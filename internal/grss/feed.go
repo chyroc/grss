@@ -103,7 +103,7 @@ func saveXml(xmlFile string, feed *fetch.Feed) error {
 			Author:      v.Author,
 			Description: v.Description,
 		}
-		if !v.PubDate.IsZero() {
+		if !(v.PubDate.IsZero() || v.PubDate.Year() == 0 || v.PubDate.Year() == 1) {
 			item.PubDate = &rss2.RSSTime{Time: v.PubDate}
 		}
 		ch.Items = append(ch.Items, item)

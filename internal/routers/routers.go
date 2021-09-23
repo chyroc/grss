@@ -2,8 +2,9 @@ package routers
 
 import (
 	"github.com/chyroc/grss/internal/fetch"
+	banyuetan_jinritan "github.com/chyroc/grss/internal/routers/banyuetan/jinritan"
 	"github.com/chyroc/grss/internal/routers/pingwest/status"
-	sspai_column "github.com/chyroc/grss/internal/routers/sspai/column"
+	"github.com/chyroc/grss/internal/routers/sspai/column"
 	"github.com/chyroc/grss/internal/routers/sspai/matrix"
 	"github.com/chyroc/grss/internal/routers/zhihu/bookstore/zhihu_bookstore_newest"
 )
@@ -16,6 +17,7 @@ func init() {
 		map[string]string{"id": "264"},
 		map[string]string{"id": "266"},
 	)
+	Register("/banyuetan/jinritan", banyuetan_jinritan.New)
 }
 
 var routers []Router

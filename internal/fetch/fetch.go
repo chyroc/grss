@@ -1,7 +1,6 @@
 package fetch
 
 import (
-	"fmt"
 	"net/url"
 	"time"
 
@@ -58,17 +57,22 @@ func Fetch(sourceGetter func(map[string]string) (*Source, error), args map[strin
 		}
 	}
 
+	var resp interface{}
 	if source.Resp != nil {
 		err := req.Unmarshal(source.Resp)
 		if err != nil {
 			return nil, err
 		}
+		resp = source.Resp
 	} else {
-		fmt.Println(req.Text())
-		panic("")
+		text, err := req.Text()
+		if err != nil {
+			return nil, err
+		}
+		resp = text
 	}
 
-	items, err := source.MapReduce(source.Resp)
+	items, err := source.MapReduce(resp)
 	if err != nil {
 		return nil, err
 	}
