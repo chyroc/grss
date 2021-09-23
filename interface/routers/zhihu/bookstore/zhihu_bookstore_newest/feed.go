@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"regexp"
 
+	"github.com/chyroc/go-lambda"
 	"github.com/chyroc/grss/interface/fetch"
-	"github.com/chyroc/grss/interface/helper/objx"
 )
 
 func New() fetch.Source {
@@ -17,12 +17,12 @@ func New() fetch.Source {
 		Link:   "https://www.zhihu.com/pub/features/new",
 		Resp:   new(zhihuBookstoreResp),
 		MapReduce: func(obj interface{}) (resp []*fetch.Item, err error) {
-			err = objx.New(obj).Transfer(func(obj interface{}) interface{} {
+			err = lambda.New(obj).Transfer(func(obj interface{}) interface{} {
 				return obj.(*zhihuBookstoreResp).Data
 			}).Map(func(idx int, obj interface{}) interface{} {
 				item := obj.(*zhihuBookstoreRespItem)
 
-				authers, _ := objx.New(item).Transfer(func(obj interface{}) interface{} {
+				authers, _ := lambda.New(item).Transfer(func(obj interface{}) interface{} {
 					return obj.(*zhihuBookstoreRespItem).Authors
 				}).Map(func(idx int, v interface{}) interface{} {
 					return v.(*zhihuBookstoreRespItemAuther).Name
