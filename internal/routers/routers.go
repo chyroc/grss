@@ -6,6 +6,7 @@ import (
 	"github.com/chyroc/grss/internal/routers/pingwest/status"
 	"github.com/chyroc/grss/internal/routers/sspai/column"
 	"github.com/chyroc/grss/internal/routers/sspai/matrix"
+	ycombinator_best "github.com/chyroc/grss/internal/routers/ycombinator/best"
 	"github.com/chyroc/grss/internal/routers/zhihu/bookstore/zhihu_bookstore_newest"
 )
 
@@ -18,6 +19,7 @@ func init() {
 		map[string]string{"id": "266"},
 	)
 	Register("/banyuetan/jinritan", banyuetan_jinritan.New)
+	Register("/ycombinator/best", ycombinator_best.New)
 }
 
 var routers []Router
