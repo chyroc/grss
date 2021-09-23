@@ -89,18 +89,23 @@ func saveXml(xmlFile string, feed *fetch.Feed) error {
 		return err
 	}
 	ch := &rss2.Channel{
-		XMLName: xml.Name{Local: `channel`},
-		Title:   feed.Title,
-		Link:    feed.Link,
-		Items:   nil,
+		XMLName:     xml.Name{Local: `channel`},
+		Title:       feed.Title,
+		Link:        feed.Link,
+		Description: feed.Description,
+		Items:       nil,
 	}
 	for _, v := range feed.Items {
-		ch.Items = append(ch.Items, &rss2.Item{
+		item := &rss2.Item{
 			XMLName:     xml.Name{Local: `item`},
 			Title:       v.Title,
 			Link:        v.Link,
 			Description: v.Description,
-		})
+		}
+		if !v.PubDate.IsZero() {
+			item.PubDate = &rss2.RSSTime{Time: v.PubDate}
+		}
+		ch.Items = append(ch.Items, item)
 	}
 	rss := rss2.NewRSS(ch)
 	bs, err := xml.MarshalIndent(rss, "", "  ")
