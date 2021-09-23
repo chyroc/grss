@@ -40,7 +40,7 @@ func New() fetch.Source {
 				if title == "" {
 					title = tag
 				}
-				link := strings.TrimSpace(rightNode.Find(".a").Last().AttrOr("href", ""))
+				link := strings.TrimSpace(rightNode.Find("a").Last().AttrOr("href", ""))
 				if !strings.HasPrefix(link, "http") {
 					link = "https:" + link
 				}

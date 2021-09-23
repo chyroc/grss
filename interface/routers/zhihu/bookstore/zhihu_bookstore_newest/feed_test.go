@@ -19,4 +19,5 @@ func Test_ZhihuBookstore(t *testing.T) {
 	as.Equal("https://www.zhihu.com/pub/features/new", feed.Link)
 	spew.Dump(feed)
 	as.True(len(feed.Items) > 0)
+	as.NotEqual(feed.Items[0].Link, feed.Items[1].Link)
 }
