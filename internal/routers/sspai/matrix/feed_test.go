@@ -3,16 +3,16 @@ package sspai_matrix_test
 import (
 	"testing"
 
-	"github.com/chyroc/go-assert"
-	"github.com/chyroc/grss/interface/fetch"
-	"github.com/chyroc/grss/interface/routers/sspai/matrix"
+	"github.com/chyroc/grss/internal/fetch"
+	"github.com/chyroc/grss/internal/routers/sspai/matrix"
 	"github.com/davecgh/go-spew/spew"
+	"github.com/stretchr/testify/assert"
 )
 
 func Test_Feed(t *testing.T) {
 	as := assert.New(t)
 
-	feed, err := fetch.Fetch(sspai_matrix.New())
+	feed, err := fetch.Fetch(sspai_matrix.New, nil)
 	as.Nil(err)
 
 	as.Equal("少数派 - Matrix", feed.Title)

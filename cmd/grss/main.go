@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/chyroc/grss/interface/grss"
+	"github.com/chyroc/grss/internal/grss"
 )
 
 func main() {

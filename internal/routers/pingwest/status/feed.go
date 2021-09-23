@@ -7,11 +7,11 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/chyroc/grss/interface/fetch"
+	"github.com/chyroc/grss/internal/fetch"
 )
 
-func New() fetch.Source {
-	return fetch.Source{
+func New(map[string]string) (*fetch.Source, error) {
+	return &fetch.Source{
 		Title:       "品玩 - 实时要闻",
 		Description: "品玩 - 实时要闻",
 		Link:        "https://www.pingwest.com/status",
@@ -55,7 +55,7 @@ func New() fetch.Source {
 
 			return items, err
 		},
-	}
+	}, nil
 }
 
 type pingwestStateResp struct {

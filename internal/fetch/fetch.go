@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/chyroc/gorequests"
+	"github.com/chyroc/grss/internal/helper"
 )
 
 type Source struct {
@@ -36,8 +36,13 @@ type Feed struct {
 	Items       []*Item
 }
 
-func Fetch(source Source) (*Feed, error) {
-	req := gorequests.New(source.Method, source.URL)
+func Fetch(sourceGetter func(map[string]string) (*Source, error), args map[string]string) (*Feed, error) {
+	source, err := sourceGetter(args)
+	if err != nil {
+		return nil, err
+	}
+
+	req := helper.Req.New(source.Method, source.URL)
 	if len(source.Query) > 0 {
 		for k, v := range source.Query {
 			for _, vv := range v {

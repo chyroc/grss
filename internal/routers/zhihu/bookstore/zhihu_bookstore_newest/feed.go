@@ -6,11 +6,11 @@ import (
 	"regexp"
 
 	"github.com/chyroc/go-lambda"
-	"github.com/chyroc/grss/interface/fetch"
+	"github.com/chyroc/grss/internal/fetch"
 )
 
-func New() fetch.Source {
-	return fetch.Source{
+func New(map[string]string) (*fetch.Source, error) {
+	return &fetch.Source{
 		Method: http.MethodGet,
 		URL:    "https://api.zhihu.com/books/features/new",
 		Title:  "知乎书店 - 新书抢鲜",
@@ -42,7 +42,7 @@ func New() fetch.Source {
 			}).ToList(&resp)
 			return resp, err
 		},
-	}
+	}, nil
 }
 
 type zhihuBookstoreResp struct {

@@ -7,12 +7,12 @@ import (
 	"time"
 
 	"github.com/chyroc/go-lambda"
-	"github.com/chyroc/gorequests"
-	"github.com/chyroc/grss/interface/fetch"
+	"github.com/chyroc/grss/internal/fetch"
+	"github.com/chyroc/grss/internal/helper"
 )
 
-func New() fetch.Source {
-	return fetch.Source{
+func New(map[string]string) (*fetch.Source, error) {
+	return &fetch.Source{
 		Title:       "少数派 - Matrix",
 		Description: "少数派 - Matrix",
 		Link:        "https://sspai.com/matrix",
@@ -26,7 +26,7 @@ func New() fetch.Source {
 				item := obj.(*sspaiMatrixRespItem)
 				link := fmt.Sprintf("https://sspai.com/post/%d", item.ID)
 				// desc := ""
-				text, _ := gorequests.New(http.MethodGet, link).Text()
+				text, _ := helper.Req.New(http.MethodGet, link).Text()
 				// if err == nil {
 				// 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(text))
 				// 	if err == nil {
@@ -49,7 +49,7 @@ func New() fetch.Source {
 			}
 			return resp, err
 		},
-	}
+	}, nil
 }
 
 type sspaiMatrixRespItem struct {

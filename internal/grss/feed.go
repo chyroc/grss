@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chyroc/grss/interface/fetch"
+	"github.com/chyroc/grss/internal/fetch"
 	"github.com/codesoap/rss2"
 )
 
