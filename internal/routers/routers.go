@@ -13,6 +13,7 @@ func init() {
 	Register("/pingwest/status", pingwest_status.New)
 	Register("/sspai/matrix", sspai_matrix.New)
 	Register("/sspai/column/:id", sspai_column.New,
+		map[string]string{"id": "264"},
 		map[string]string{"id": "266"},
 	)
 }
