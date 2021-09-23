@@ -2,6 +2,8 @@ github.com/chyroc/go-assert v1.9.0 h1:lIUlBaMF0ENcQc7RyPrEU3fY8SX6ol2FPT7DInGe75
 github.com/chyroc/go-assert v1.9.0/go.mod h1:BdP17hLudHz+ZZJyiMN9oVx2nINgWQeHohEsf81CdP8=
 github.com/chyroc/gorequests v0.27.0 h1:J3//Q1vQDf7RsELePseYYIg5bv3ZlfOylIKue7ADuYo=
 github.com/chyroc/gorequests v0.27.0/go.mod h1:78PccCF4ADJbPl7DCwapqtKYl861s7lJrUKV9FWN30Q=
+github.com/codesoap/rss2 v0.0.0-20190809124225-998b8c993049 h1:R/jfPKqaW2OW6ZWpEmNuJrBIRP0jIR9kCorec/eJAss=
+github.com/codesoap/rss2 v0.0.0-20190809124225-998b8c993049/go.mod h1:GaNPBTe1sGx46T3L/m2aeQj7Osakiqlubrn2VKf8U2Y=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=

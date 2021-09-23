@@ -1,4 +1,4 @@
-package zhihu_bookstore
+package zhihu_bookstore_newest
 
 import (
 	"fmt"

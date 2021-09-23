@@ -5,6 +5,7 @@ go 1.17
 require (
 	github.com/chyroc/go-assert v1.9.0
 	github.com/chyroc/gorequests v0.27.0
+	github.com/codesoap/rss2 v0.0.0-20190809124225-998b8c993049
 	github.com/davecgh/go-spew v1.1.1
 )
 
