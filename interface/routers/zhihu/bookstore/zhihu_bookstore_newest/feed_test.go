@@ -15,7 +15,7 @@ func Test_ZhihuBookstore(t *testing.T) {
 	feed, err := fetch.Fetch(zhihu_bookstore_newest.New())
 	as.Nil(err)
 
-	as.Equal("知乎书店-新书抢鲜", feed.Title)
+	as.Equal("知乎书店 - 新书抢鲜", feed.Title)
 	as.Equal("https://www.zhihu.com/pub/features/new", feed.Link)
 	spew.Dump(feed)
 	as.True(len(feed.Items) > 0)

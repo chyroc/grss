@@ -3,12 +3,14 @@ package routers
 import (
 	"github.com/chyroc/grss/interface/fetch"
 	"github.com/chyroc/grss/interface/routers/pingwest/status"
+	"github.com/chyroc/grss/interface/routers/sspai/matrix"
 	"github.com/chyroc/grss/interface/routers/zhihu/bookstore/zhihu_bookstore_newest"
 )
 
 func init() {
 	Register("/zhihu/bookstore/newest", zhihu_bookstore_newest.New())
 	Register("/pingwest/status", pingwest_status.New())
+	Register("/sspai/matrix", sspai_matrix.New())
 }
 
 var routers []Router

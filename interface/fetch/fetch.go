@@ -25,6 +25,7 @@ type Item struct {
 	Title       string
 	Link        string
 	Description string
+	Author      string
 	PubDate     time.Time
 }
 

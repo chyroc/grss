@@ -100,6 +100,7 @@ func saveXml(xmlFile string, feed *fetch.Feed) error {
 			XMLName:     xml.Name{Local: `item`},
 			Title:       v.Title,
 			Link:        v.Link,
+			Author:      v.Author,
 			Description: v.Description,
 		}
 		if !v.PubDate.IsZero() {

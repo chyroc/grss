@@ -13,18 +13,18 @@ func New() fetch.Source {
 	return fetch.Source{
 		Method: http.MethodGet,
 		URL:    "https://api.zhihu.com/books/features/new",
-		Title:  "知乎书店-新书抢鲜",
+		Title:  "知乎书店 - 新书抢鲜",
 		Link:   "https://www.zhihu.com/pub/features/new",
 		Resp:   new(zhihuBookstoreResp),
 		MapReduce: func(obj interface{}) (resp []*fetch.Item, err error) {
 			err = lambda.New(obj).Transfer(func(obj interface{}) interface{} {
 				return obj.(*zhihuBookstoreResp).Data
-			}).Map(func(idx int, obj interface{}) interface{} {
+			}).Array(func(idx int, obj interface{}) interface{} {
 				item := obj.(*zhihuBookstoreRespItem)
 
 				authers, _ := lambda.New(item).Transfer(func(obj interface{}) interface{} {
 					return obj.(*zhihuBookstoreRespItem).Authors
-				}).Map(func(idx int, v interface{}) interface{} {
+				}).Array(func(idx int, v interface{}) interface{} {
 					return v.(*zhihuBookstoreRespItemAuther).Name
 				}).Join("、")
 
