@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/chyroc/baidufanyi"
 	"github.com/chyroc/go-lambda"
 	"github.com/chyroc/grss/internal/fetch"
 	"github.com/chyroc/grss/internal/helper"
@@ -60,4 +61,8 @@ func New(args map[string]string) (*fetch.Source, error) {
 			return resp, err
 		},
 	}, nil
+}
+
+func init() {
+	_ = baidufanyi.New(baidufanyi.WithCredential("", ""))
 }
