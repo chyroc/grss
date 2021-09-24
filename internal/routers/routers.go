@@ -7,6 +7,8 @@ import (
 	"github.com/chyroc/grss/internal/routers/sspai/column"
 	"github.com/chyroc/grss/internal/routers/sspai/matrix"
 	woshipm_latest "github.com/chyroc/grss/internal/routers/woshipm/latest"
+	ycombinator_best "github.com/chyroc/grss/internal/routers/ycombinator/best"
+	ycombinator_newest "github.com/chyroc/grss/internal/routers/ycombinator/newest"
 	"github.com/chyroc/grss/internal/routers/zhihu/bookstore/zhihu_bookstore_newest"
 )
 
@@ -20,6 +22,8 @@ func init() {
 	)
 	Register("/banyuetan/jinritan", banyuetan_jinritan.New)
 	Register("/woshipm/latest", woshipm_latest.New)
+	Register("/ycombinator/best", ycombinator_best.New)
+	Register("/ycombinator/newest", ycombinator_newest.New)
 }
 
 var routers []Router

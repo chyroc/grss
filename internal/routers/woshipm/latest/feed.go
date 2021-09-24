@@ -36,8 +36,8 @@ func New(map[string]string) (*fetch.Source, error) {
 			return items, nil
 		},
 		Parse: func(obj interface{}) ([]*fetch.Item, error) {
-			items:=[]*fetch.Item{}
-			err:=lambda.New(obj).ArrayAsync(func(idx int, obj interface{}) interface{} {
+			items := []*fetch.Item{}
+			err := lambda.New(obj).ArrayAsync(func(idx int, obj interface{}) interface{} {
 				item := obj.(*woshipmLatestRespItem)
 				title := item.Title
 				link := item.Permalink
