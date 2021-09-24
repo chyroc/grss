@@ -25,6 +25,9 @@ func main() {
 		if path == "internal/routers/routers.go" {
 			return nil
 		}
+		if strings.Contains(path, "/internal") {
+			return nil
+		}
 		pkg := readInfo(path)
 		pkgList = append(pkgList, pkg)
 		return nil
