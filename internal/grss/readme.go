@@ -25,7 +25,9 @@ func updateReadme() error {
 		}
 	}
 
-	data := fmt.Sprintf(`# Git RSS
+	data := fmt.Sprintf(`![](./header.png)
+
+# Git RSS
 
 Homepage: https://rss.chyroc.cn
 
