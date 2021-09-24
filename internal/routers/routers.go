@@ -4,6 +4,7 @@ import (
 	"github.com/chyroc/grss/internal/fetch"
 	"github.com/chyroc/grss/internal/routers/banyuetan/jinritan"
 	"github.com/chyroc/grss/internal/routers/pingwest/status"
+	"github.com/chyroc/grss/internal/routers/reddit/community/hot"
 	"github.com/chyroc/grss/internal/routers/sspai/column"
 	"github.com/chyroc/grss/internal/routers/sspai/matrix"
 	"github.com/chyroc/grss/internal/routers/v2ex/latest"
@@ -16,6 +17,7 @@ import (
 func init() {
 	Register("/banyuetan/jinritan", banyuetan_jinritan.New)
 	Register("/pingwest/status", pingwest_status.New)
+	Register("/reddit/community/hot", reddit_community_hot.New)
 	Register("/sspai/column/:id", sspai_column.New,
 		map[string]string{"id": "264"},
 		map[string]string{"id": "266"},
