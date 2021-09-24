@@ -27,9 +27,18 @@ func updateReadme() error {
 
 	data := fmt.Sprintf(`# Git RSS
 
+Homepage: https://rss.chyroc.cn
+
+Generate Tool: https://github.com/chyroc/grss
+
 ## Routers
 
 %s
 `, strings.Join(items, "\n"))
-	return ioutil.WriteFile("./index.md", []byte(data), 0o666)
+
+	if err := ioutil.WriteFile("./README.md", []byte(data), 0o666); err != nil {
+		panic(err)
+	}
+
+	return nil
 }
