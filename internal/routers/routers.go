@@ -6,6 +6,7 @@ import (
 	"github.com/chyroc/grss/internal/routers/pingwest/status"
 	"github.com/chyroc/grss/internal/routers/sspai/column"
 	"github.com/chyroc/grss/internal/routers/sspai/matrix"
+	"github.com/chyroc/grss/internal/routers/v2ex/latest"
 	"github.com/chyroc/grss/internal/routers/woshipm/latest"
 	"github.com/chyroc/grss/internal/routers/ycombinator/best"
 	"github.com/chyroc/grss/internal/routers/ycombinator/newest"
@@ -20,6 +21,7 @@ func init() {
 		map[string]string{"id": "266"},
 	)
 	Register("/sspai/matrix", sspai_matrix.New)
+	Register("/v2ex/latest", v2ex_latest.New)
 	Register("/woshipm/latest", woshipm_latest.New)
 	Register("/ycombinator/best", ycombinator_best.New)
 	Register("/ycombinator/newest", ycombinator_newest.New)
