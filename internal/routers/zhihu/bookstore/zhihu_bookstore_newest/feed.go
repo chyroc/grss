@@ -7,16 +7,19 @@ import (
 
 	"github.com/chyroc/go-lambda"
 	"github.com/chyroc/grss/internal/fetch"
+	"github.com/chyroc/grss/internal/helper"
 )
 
 func New(map[string]string) (*fetch.Source, error) {
 	return &fetch.Source{
-		Method: http.MethodGet,
-		URL:    "https://api.zhihu.com/books/features/new",
-		Title:  "知乎书店 - 新书抢鲜",
-		Link:   "https://www.zhihu.com/pub/features/new",
-		Resp:   new(zhihuBookstoreResp),
-		MapReduce: func(obj interface{}) (resp []*fetch.Item, err error) {
+		Title: "知乎书店 - 新书抢鲜",
+		Link:  "https://www.zhihu.com/pub/features/new",
+
+		Fetch: func() (interface{}, error) {
+			resp := new(zhihuBookstoreResp)
+			return resp, helper.Req.New(http.MethodGet, "https://api.zhihu.com/books/features/new").Unmarshal(resp)
+		},
+		Parse: func(obj interface{}) (resp []*fetch.Item, err error) {
 			err = lambda.New(obj).Transfer(func(obj interface{}) interface{} {
 				return obj.(*zhihuBookstoreResp).Data
 			}).Array(func(idx int, obj interface{}) interface{} {

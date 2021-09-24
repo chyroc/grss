@@ -26,12 +26,13 @@ func New(args map[string]string) (*fetch.Source, error) {
 		Description: columnInfo.Intro,
 		Link:        link,
 
-		Method: http.MethodGet,
-		URL:    fmt.Sprintf("https://sspai.com/api/v1/articles?offset=0&limit=10&special_column_ids=%s&include_total=false", id),
-		Query:  nil,
-		Header: map[string][]string{"Referer": {link}},
-		Resp:   new(sspaiColumnItemResp),
-		MapReduce: func(obj interface{}) (resp []*fetch.Item, err error) {
+		Fetch: func() (interface{}, error) {
+			url := fmt.Sprintf("https://sspai.com/api/v1/articles?offset=0&limit=10&special_column_ids=%s&include_total=false", id)
+			header := map[string]string{"Referer": link}
+			resp := new(sspaiColumnItemResp)
+			return resp, helper.Req.New(http.MethodGet, url).WithHeaders(header).Unmarshal(resp)
+		},
+		Parse: func(obj interface{}) (resp []*fetch.Item, err error) {
 			err = lambda.New(obj).Transfer(func(obj interface{}) interface{} {
 				return obj.(*sspaiColumnItemResp).List
 			}).ArrayAsync(func(idx int, v interface{}) interface{} {

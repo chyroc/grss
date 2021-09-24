@@ -6,6 +6,7 @@ import (
 	"github.com/chyroc/grss/internal/routers/pingwest/status"
 	"github.com/chyroc/grss/internal/routers/sspai/column"
 	"github.com/chyroc/grss/internal/routers/sspai/matrix"
+	woshipm_latest "github.com/chyroc/grss/internal/routers/woshipm/latest"
 	"github.com/chyroc/grss/internal/routers/zhihu/bookstore/zhihu_bookstore_newest"
 )
 
@@ -18,6 +19,7 @@ func init() {
 		map[string]string{"id": "266"},
 	)
 	Register("/banyuetan/jinritan", banyuetan_jinritan.New)
+	Register("/woshipm/latest", woshipm_latest.New)
 }
 
 var routers []Router

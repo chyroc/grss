@@ -16,10 +16,13 @@ func New(map[string]string) (*fetch.Source, error) {
 		Title:       "少数派 - Matrix",
 		Description: "少数派 - Matrix",
 		Link:        "https://sspai.com/matrix",
-		Method:      http.MethodGet,
-		URL:         "https://sspai.com/api/v1/articles?offset=0&limit=20&is_matrix=1&sort=matrix_at&include_total=false",
-		Resp:        new(sspaiMatrixResp),
-		MapReduce: func(obj interface{}) (resp []*fetch.Item, err error) {
+
+		Fetch: func() (interface{}, error) {
+			url := "https://sspai.com/api/v1/articles?offset=0&limit=20&is_matrix=1&sort=matrix_at&include_total=false"
+			resp := new(sspaiMatrixResp)
+			return resp, helper.Req.New(http.MethodGet, url).Unmarshal(resp)
+		},
+		Parse: func(obj interface{}) (resp []*fetch.Item, err error) {
 			err = lambda.New(obj).Transfer(func(obj interface{}) interface{} {
 				return obj.(*sspaiMatrixResp).List
 			}).ArrayAsync(func(idx int, obj interface{}) interface{} {
@@ -27,14 +30,7 @@ func New(map[string]string) (*fetch.Source, error) {
 				link := fmt.Sprintf("https://sspai.com/post/%d", item.ID)
 				// desc := ""
 				text, _ := helper.Req.New(http.MethodGet, link).Text()
-				// if err == nil {
-				// 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(text))
-				// 	if err == nil {
 				// 		// description = $('#app > div.postPage.article-wrapper > div.article-detail > article > div.article-body').html();
-				// 		fmt.Println("======")
-				// 		fmt.Println()
-				// 	}
-				// }
 
 				return &fetch.Item{
 					Title:       strings.TrimSpace(item.Title),

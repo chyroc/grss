@@ -11,14 +11,17 @@ import (
 )
 
 func New(map[string]string) (*fetch.Source, error) {
+	link := "http://www.banyuetan.org/byt/jinritan/index.html"
 	return &fetch.Source{
 		Title:       "半月谈 - 今日谈",
 		Description: "半月谈 - 今日谈",
-		Link:        "http://www.banyuetan.org/byt/jinritan/index.html",
+		Link:        link,
 
-		Method: http.MethodGet,
-		URL:    "http://www.banyuetan.org/byt/jinritan/index.html",
-		MapReduce: func(obj interface{}) ([]*fetch.Item, error) {
+		Fetch: func() (interface{}, error) {
+			text, err := helper.Req.New(http.MethodGet, link).Text()
+			return text, err
+		},
+		Parse: func(obj interface{}) ([]*fetch.Item, error) {
 			doc, err := goquery.NewDocumentFromReader(strings.NewReader(obj.(string)))
 			if err != nil {
 				return nil, err

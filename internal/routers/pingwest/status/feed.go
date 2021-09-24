@@ -8,6 +8,7 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/chyroc/grss/internal/fetch"
+	"github.com/chyroc/grss/internal/helper"
 )
 
 func New(map[string]string) (*fetch.Source, error) {
@@ -16,12 +17,13 @@ func New(map[string]string) (*fetch.Source, error) {
 		Description: "品玩 - 实时要闻",
 		Link:        "https://www.pingwest.com/status",
 
-		Method: http.MethodGet,
-		URL:    "https://www.pingwest.com/api/state/list",
-		Query:  map[string][]string{"page": {"1"}},
-		Header: map[string][]string{"Referer": {"https://www.pingwest.com"}},
-		Resp:   new(pingwestStateResp),
-		MapReduce: func(obj interface{}) (items []*fetch.Item, err error) {
+		Fetch: func() (interface{}, error) {
+			query := map[string]string{"page": "1"}
+			header := map[string]string{"Referer": "https://www.pingwest.com"}
+			resp := new(pingwestStateResp)
+			return resp, helper.Req.New(http.MethodGet, "https://www.pingwest.com/api/state/list").WithQuerys(query).WithHeaders(header).Unmarshal(resp)
+		},
+		Parse: func(obj interface{}) (items []*fetch.Item, err error) {
 			q, err := goquery.NewDocumentFromReader(strings.NewReader(obj.(*pingwestStateResp).Data.List))
 			if err != nil {
 				return nil, err

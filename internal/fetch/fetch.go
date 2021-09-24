@@ -1,10 +1,7 @@
 package fetch
 
 import (
-	"net/url"
 	"time"
-
-	"github.com/chyroc/grss/internal/helper"
 )
 
 type Source struct {
@@ -12,12 +9,8 @@ type Source struct {
 	Description string
 	Link        string
 
-	Method    string
-	URL       string
-	Query     url.Values
-	Header    url.Values
-	Resp      interface{}
-	MapReduce func(obj interface{}) ([]*Item, error)
+	Fetch func() (interface{}, error)
+	Parse func(obj interface{}) ([]*Item, error)
 }
 
 type Item struct {
@@ -41,38 +34,12 @@ func Fetch(sourceGetter func(map[string]string) (*Source, error), args map[strin
 		return nil, err
 	}
 
-	req := helper.Req.New(source.Method, source.URL)
-	if len(source.Query) > 0 {
-		for k, v := range source.Query {
-			for _, vv := range v {
-				req.WithQuery(k, vv)
-			}
-		}
-	}
-	if len(source.Header) > 0 {
-		for k, v := range source.Header {
-			for _, vv := range v {
-				req.WithHeader(k, vv)
-			}
-		}
+	resp, err := source.Fetch()
+	if err != nil {
+		return nil, err
 	}
 
-	var resp interface{}
-	if source.Resp != nil {
-		err := req.Unmarshal(source.Resp)
-		if err != nil {
-			return nil, err
-		}
-		resp = source.Resp
-	} else {
-		text, err := req.Text()
-		if err != nil {
-			return nil, err
-		}
-		resp = text
-	}
-
-	items, err := source.MapReduce(resp)
+	items, err := source.Parse(resp)
 	if err != nil {
 		return nil, err
 	}
