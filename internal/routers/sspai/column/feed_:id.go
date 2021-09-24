@@ -11,6 +11,8 @@ import (
 	"github.com/chyroc/grss/internal/helper"
 )
 
+// args: map[string]string{"id": "264"}
+// args: map[string]string{"id": "266"}
 func New(args map[string]string) (*fetch.Source, error) {
 	id := args["id"]
 

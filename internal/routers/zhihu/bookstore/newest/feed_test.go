@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/chyroc/grss/internal/fetch"
-	"github.com/chyroc/grss/internal/routers/zhihu/bookstore/zhihu_bookstore_newest"
+	"github.com/chyroc/grss/internal/routers/zhihu/bookstore/newest"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/stretchr/testify/assert"
 )
