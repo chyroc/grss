@@ -7,6 +7,7 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/chyroc/baidufanyi"
+	"github.com/chyroc/go-html2text"
 	"github.com/chyroc/go-lambda"
 	"github.com/chyroc/grss/internal/fetch"
 	"github.com/chyroc/grss/internal/helper"
@@ -51,6 +52,12 @@ func New(args map[string]string) (*fetch.Source, error) {
 					link = "https://www.reddit.com" + link
 				}
 				text, _ := helper.Req.New(http.MethodGet, link).Text()
+				if text != "" {
+					htmlmeta, _ := html2text.Parse(text)
+					if htmlmeta != nil {
+						text = htmlmeta.Text
+					}
+				}
 				title := strings.TrimSpace(a.Find("h3").Text())
 				return &fetch.Item{
 					Title:       title,
