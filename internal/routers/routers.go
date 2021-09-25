@@ -17,7 +17,9 @@ import (
 func init() {
 	Register("/banyuetan/jinritan", banyuetan_jinritan.New)
 	Register("/pingwest/status", pingwest_status.New)
-	Register("/reddit/community/hot", reddit_community_hot.New)
+	Register("/reddit/community/hot/:r", reddit_community_hot.New,
+		map[string]string{"r": "golang"},
+	)
 	Register("/sspai/column/:id", sspai_column.New,
 		map[string]string{"id": "264"},
 		map[string]string{"id": "266"},

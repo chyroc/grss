@@ -12,7 +12,7 @@ import (
 	"github.com/chyroc/grss/internal/helper"
 )
 
-// {"r": "golang"}
+// args: map[string]string{"r": "golang"}
 func New(args map[string]string) (*fetch.Source, error) {
 	r := args["r"]
 	link := fmt.Sprintf("https://www.reddit.com/r/%s/hot/", r)
