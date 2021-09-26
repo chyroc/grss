@@ -37,7 +37,7 @@ func New(args map[string]string) (*fetch.Source, error) {
 		Parse: func(obj interface{}) (resp []*fetch.Item, err error) {
 			err = lambda.New(obj).Transfer(func(obj interface{}) interface{} {
 				return obj.(*sspaiColumnItemResp).List
-			}).ArrayAsync(func(idx int, v interface{}) interface{} {
+			}).MapArrayAsync(func(idx int, v interface{}) interface{} {
 				item := v.(*sspaiColumnItemRespItem)
 				title := strings.TrimSpace(item.Title)
 				pubTime := time.Unix(item.CreatedAt, 0)

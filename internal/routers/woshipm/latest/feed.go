@@ -22,7 +22,7 @@ func New(map[string]string) (*fetch.Source, error) {
 				"http://www.woshipm.com/__api/v1/stream-list/page/2",
 				"http://www.woshipm.com/__api/v1/stream-list/page/3",
 			})
-			err := f.ArrayAsyncWithErr(func(idx int, v interface{}) (interface{}, error) {
+			err := f.MapArrayAsyncWithErr(func(idx int, v interface{}) (interface{}, error) {
 				resp := new(woshipmLatestResp)
 				err := helper.Req.New(http.MethodGet, v.(string)).Unmarshal(resp)
 				if err != nil {
@@ -37,7 +37,7 @@ func New(map[string]string) (*fetch.Source, error) {
 		},
 		Parse: func(obj interface{}) ([]*fetch.Item, error) {
 			items := []*fetch.Item{}
-			err := lambda.New(obj).ArrayAsync(func(idx int, obj interface{}) interface{} {
+			err := lambda.New(obj).MapArrayAsync(func(idx int, obj interface{}) interface{} {
 				item := obj.(*woshipmLatestRespItem)
 				title := item.Title
 				link := item.Permalink

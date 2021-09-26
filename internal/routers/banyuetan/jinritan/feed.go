@@ -33,7 +33,7 @@ func New(map[string]string) (*fetch.Source, error) {
 			})
 
 			items := []*fetch.Item{}
-			err = lambda.New(sels).ArrayAsync(func(idx int, v interface{}) interface{} {
+			err = lambda.New(sels).MapArrayAsync(func(idx int, v interface{}) interface{} {
 				a := v.(*goquery.Selection).Find("a")
 				title := strings.TrimSpace(a.Text())
 				link := strings.TrimSpace(a.AttrOr("href", ""))

@@ -31,7 +31,7 @@ func New(map[string]string) (*fetch.Source, error) {
 			}
 
 			itemSelections := helper.Selection2List(q.Find(`section.item`))
-			err = lambda.New(itemSelections).ArrayAsync(func(idx int, obj interface{}) interface{} {
+			err = lambda.New(itemSelections).MapArrayAsync(func(idx int, obj interface{}) interface{} {
 				selection := obj.(*goquery.Selection)
 
 				timestamp := strings.TrimSpace(selection.AttrOr("data-t", ""))

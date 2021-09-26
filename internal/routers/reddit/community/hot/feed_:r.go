@@ -44,7 +44,7 @@ func New(args map[string]string) (*fetch.Source, error) {
 			doc.Find("div[data-testid=post-container]").Each(func(i int, selection *goquery.Selection) {
 				containers = append(containers, selection)
 			})
-			err = lambda.New(containers).ArrayAsyncWithErr(func(idx int, obj interface{}) (interface{}, error) {
+			err = lambda.New(containers).MapArrayAsyncWithErr(func(idx int, obj interface{}) (interface{}, error) {
 				selection := obj.(*goquery.Selection)
 				a := selection.Find("a[data-click-id=body]")
 				link := strings.TrimSpace(a.AttrOr("href", ""))

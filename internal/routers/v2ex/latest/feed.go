@@ -20,7 +20,7 @@ func New(map[string]string) (*fetch.Source, error) {
 			return resp, err
 		},
 		Parse: func(obj interface{}) (resp []*fetch.Item, err error) {
-			err = lambda.New(obj).ArrayAsyncWithErr(func(idx int, obj interface{}) (interface{}, error) {
+			err = lambda.New(obj).MapArrayAsyncWithErr(func(idx int, obj interface{}) (interface{}, error) {
 				item := obj.(*v2exLatestRespItem)
 				return &fetch.Item{
 					Title:       item.Title + " - " + item.Node.Title,

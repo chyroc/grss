@@ -25,7 +25,7 @@ func New(map[string]string) (*fetch.Source, error) {
 		Parse: func(obj interface{}) (resp []*fetch.Item, err error) {
 			err = lambda.New(obj).Transfer(func(obj interface{}) interface{} {
 				return obj.(*sspaiMatrixResp).List
-			}).ArrayAsync(func(idx int, obj interface{}) interface{} {
+			}).MapArrayAsync(func(idx int, obj interface{}) interface{} {
 				item := obj.(*sspaiMatrixRespItem)
 				link := fmt.Sprintf("https://sspai.com/post/%d", item.ID)
 
