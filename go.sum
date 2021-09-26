@@ -6,8 +6,6 @@ github.com/chyroc/baidufanyi v0.2.0 h1:K+G/LWlOfgIcx6av4Ct7nR8ntPqMw6Bl8XVYb6tIK
 github.com/chyroc/baidufanyi v0.2.0/go.mod h1:/23Yxj+pNAdy1mAS8WWMojunoz1pbnAKACZZgmmWKCk=
 github.com/chyroc/go-feedbin v0.2.0 h1:+V3j/dPzw4s4yLtuJb5r/19/Gsua/+BiGHqMUrFMuus=
 github.com/chyroc/go-feedbin v0.2.0/go.mod h1:ml2k3H/Xem2rNZ4H1xeGd1YUJNlnrmFVN1isvuvOLNI=
-github.com/chyroc/go-lambda v0.5.0 h1:4D9zx7ZpoZ5gG2ckC5bP9rd3U1yIvZRTfNpi/A0uuaw=
-github.com/chyroc/go-lambda v0.5.0/go.mod h1:sPXTvOS0tIcLmew9QHIzAZiD5Mnt6iR/sl1nTNnowzQ=
 github.com/chyroc/go-lambda v0.6.0 h1:AUj66Co2LIJUKZ+kv1MWBODIPSat99nfLtuzn/lNF0Q=
 github.com/chyroc/go-lambda v0.6.0/go.mod h1:SlXMESnXIEz/C1kPSFk8WNlgfhDof8n05iYbG5868c8=
 github.com/chyroc/go-ptr v1.4.0 h1:o+GxDzrmIdWaJmWU5CRWVX+31UIcQUNE4SauRWuN6O8=
