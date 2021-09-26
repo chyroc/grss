@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/chyroc/go-lambda"
 	"github.com/chyroc/grss/internal/fetch"
 	"github.com/chyroc/grss/internal/helper"
 )
@@ -29,7 +30,10 @@ func New(map[string]string) (*fetch.Source, error) {
 				return nil, err
 			}
 
-			q.Find(`section.item`).Each(func(i int, selection *goquery.Selection) {
+			itemSelections := helper.Selection2List(q.Find(`section.item`))
+			err = lambda.New(itemSelections).ArrayAsync(func(idx int, obj interface{}) interface{} {
+				selection := obj.(*goquery.Selection)
+
 				timestamp := strings.TrimSpace(selection.AttrOr("data-t", ""))
 				ts, _ := strconv.ParseInt(timestamp, 10, 64)
 				pubDate := time.Now()
@@ -47,14 +51,20 @@ func New(map[string]string) (*fetch.Source, error) {
 					link = "https:" + link
 				}
 				description := strings.TrimSpace(rightNode.Text())
-				items = append(items, &fetch.Item{
+				if text, _ := helper.Req.New(http.MethodGet, link).Text(); text != "" {
+					if doc, _ := goquery.NewDocumentFromReader(strings.NewReader(text)); doc != nil {
+						if html, _ := doc.Find("article").Html(); html != "" {
+							description = html
+						}
+					}
+				}
+				return &fetch.Item{
 					Title:       title,
 					Link:        link,
 					Description: description,
 					PubDate:     pubDate,
-				})
-			})
-
+				}
+			}).ToList(&items)
 			return items, err
 		},
 	}, nil

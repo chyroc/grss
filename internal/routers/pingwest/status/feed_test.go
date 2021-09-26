@@ -15,6 +15,8 @@ func TestName(t *testing.T) {
 
 	feed, err := fetch.Fetch(pingwest_status.New, nil)
 	as.Nil(err)
+	as.NotNil(feed)
+
 	as.Equal("品玩 - 实时要闻", feed.Title)
 	as.Equal("https://www.pingwest.com/status", feed.Link)
 	spew.Dump(feed)
