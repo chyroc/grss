@@ -42,12 +42,11 @@ func New(map[string]string) (*fetch.Source, error) {
 				title := item.Title
 				link := item.Permalink
 				pubDate, _ := time.Parse("2006/01/02", item.Date)
-				text, _ := helper.Req.New(http.MethodGet, link).Text()
 
 				return &fetch.Item{
 					Title:       title,
 					Link:        link,
-					Description: text,
+					Description: helper.AddFeedbinPage2(link),
 					PubDate:     pubDate,
 				}
 			}).ToList(&items)

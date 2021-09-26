@@ -50,18 +50,10 @@ func New(map[string]string) (*fetch.Source, error) {
 				if !strings.HasPrefix(link, "http") {
 					link = "https:" + link
 				}
-				description := strings.TrimSpace(rightNode.Text())
-				if text, _ := helper.Req.New(http.MethodGet, link).Text(); text != "" {
-					if doc, _ := goquery.NewDocumentFromReader(strings.NewReader(text)); doc != nil {
-						if html, _ := doc.Find("article").Html(); html != "" {
-							description = html
-						}
-					}
-				}
 				return &fetch.Item{
 					Title:       title,
 					Link:        link,
-					Description: description,
+					Description: helper.AddFeedbinPage2(link),
 					PubDate:     pubDate,
 				}
 			}).ToList(&items)

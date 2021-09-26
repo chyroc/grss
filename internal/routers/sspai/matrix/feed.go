@@ -28,14 +28,11 @@ func New(map[string]string) (*fetch.Source, error) {
 			}).ArrayAsync(func(idx int, obj interface{}) interface{} {
 				item := obj.(*sspaiMatrixRespItem)
 				link := fmt.Sprintf("https://sspai.com/post/%d", item.ID)
-				// desc := ""
-				text, _ := helper.Req.New(http.MethodGet, link).Text()
-				// 		// description = $('#app > div.postPage.article-wrapper > div.article-detail > article > div.article-body').html();
 
 				return &fetch.Item{
 					Title:       strings.TrimSpace(item.Title),
 					Link:        link,
-					Description: text,
+					Description: helper.AddFeedbinPage2(link),
 					Author:      strings.TrimSpace(item.Author.Nickname),
 					PubDate:     time.Unix(item.ReleasedAt, 0),
 				}

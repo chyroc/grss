@@ -5,6 +5,7 @@ go 1.17
 require (
 	github.com/PuerkitoBio/goquery v1.7.1
 	github.com/chyroc/baidufanyi v0.2.0
+	github.com/chyroc/go-feedbin v0.1.0
 	github.com/chyroc/go-lambda v0.4.0
 	github.com/chyroc/gorequests v0.27.0
 	github.com/codesoap/rss2 v0.0.0-20190809124225-998b8c993049
@@ -14,22 +15,15 @@ require (
 
 require (
 	github.com/andybalholm/cascadia v1.2.0 // indirect
-	github.com/chyroc/go-html2text v0.0.0-20210925152508-2d02738d7fa3 // indirect
-	github.com/gelembjuk/articletext v0.0.0-20160728042224-1fb1f5fd32d6 // indirect
 	github.com/google/go-cmp v0.5.6 // indirect
-	github.com/jaytaylor/html2text v0.0.0-20200412013138-3577fbdbcff7 // indirect
 	github.com/juju/go4 v0.0.0-20160222163258-40d72ab9641a // indirect
 	github.com/juju/persistent-cookiejar v0.0.0-20171026135701-d5e5a8405ef9 // indirect
 	github.com/kr/pretty v0.3.0 // indirect
-	github.com/mattn/go-runewidth v0.0.9 // indirect
-	github.com/olekukonko/tablewriter v0.0.5 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rogpeppe/go-internal v1.8.0 // indirect
-	github.com/ssor/bom v0.0.0-20170718123548-6386211fdfcf // indirect
 	golang.org/x/net v0.0.0-20210825183410-e898025ed96a // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/errgo.v1 v1.0.1 // indirect
-	gopkg.in/neurosnap/sentences.v1 v1.0.7 // indirect
 	gopkg.in/retry.v1 v1.0.3 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )

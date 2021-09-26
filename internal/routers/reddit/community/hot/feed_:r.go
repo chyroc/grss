@@ -8,7 +8,6 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/chyroc/baidufanyi"
-	"github.com/chyroc/go-html2text"
 	"github.com/chyroc/go-lambda"
 	"github.com/chyroc/grss/internal/fetch"
 	"github.com/chyroc/grss/internal/helper"
@@ -52,13 +51,8 @@ func New(args map[string]string) (*fetch.Source, error) {
 				if link != "" {
 					link = "https://www.reddit.com" + link
 				}
-				text, _ := helper.Req.New(http.MethodGet, link).Text()
-				if text != "" {
-					htmlmeta, _ := html2text.Parse(text)
-					if htmlmeta != nil {
-						text = htmlmeta.Text
-					}
-				}
+				text := helper.AddFeedbinPage2(link)
+
 				translateResult, _ := baidufanyi.New(baidufanyi.WithCredential(os.Getenv("BAIDUFANYI_APP_ID"), os.Getenv("jnh5wcr_d4NrMkhkSdMW"))).Translate(text, baidufanyi.LanguageEn, baidufanyi.LanguageZh)
 				translateResultString, _ := lambda.New(translateResult).Array(func(idx int, obj interface{}) interface{} {
 					return obj.(*baidufanyi.TranslateResult).Dst

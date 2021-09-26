@@ -37,11 +37,10 @@ func New(map[string]string) (*fetch.Source, error) {
 				a := v.(*goquery.Selection).Find("a")
 				title := strings.TrimSpace(a.Text())
 				link := strings.TrimSpace(a.AttrOr("href", ""))
-				text, _ := helper.Req.New(http.MethodGet, link).Text()
 				return &fetch.Item{
 					Title:       title,
 					Link:        link,
-					Description: text,
+					Description: helper.AddFeedbinPage2(link),
 				}
 			}).ToList(&items)
 			if err != nil {

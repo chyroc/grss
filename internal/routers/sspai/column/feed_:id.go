@@ -43,12 +43,11 @@ func New(args map[string]string) (*fetch.Source, error) {
 				pubTime := time.Unix(item.CreatedAt, 0)
 				itemURL := fmt.Sprintf("https://sspai.com/post/%d", item.ID)
 				author := item.Author.Nickname
-				text, _ := helper.Req.New(http.MethodGet, itemURL).Text()
 
 				return &fetch.Item{
 					Title:       title,
 					Link:        itemURL,
-					Description: text,
+					Description: helper.AddFeedbinPage2(itemURL),
 					Author:      author,
 					PubDate:     pubTime,
 				}
