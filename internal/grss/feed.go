@@ -12,35 +12,58 @@ import (
 	"time"
 
 	"github.com/chyroc/grss/internal/fetch"
+	"github.com/chyroc/grss/internal/helper"
 	"github.com/codesoap/rss2"
 )
 
 func DumpFeed(path string, feed *fetch.Feed) error {
 	// config
 	path = strings.TrimLeft(path, "/")
-	date := time.Now().Format("2006-01-02")
 
-	jsonFile := fmt.Sprintf("json/%s/%s.json", date, path)
-	xmlFile := fmt.Sprintf("xml/%s.xml", path)
+	// refresh data && save history data
+	{
+		date := time.Now().Format("2006-01-02")
+		jsonDateFile := fmt.Sprintf("json/%s/%s.json", date, path)
+		oldFeed, err := loadExistFeed(jsonDateFile)
+		if err != nil {
+			return err
+		}
 
-	// load exist data
-	oldFeed, err := loadExistFeed(jsonFile)
-	if err != nil {
-		return err
+		// join date
+		newFeed, changed := joinFeed(oldFeed, feed)
+		if !changed {
+			log.Printf("join feed, old=%d, new=%d, no changed, skip", len(oldFeed.Items), len(newFeed.Items))
+			return nil
+		}
+		if err = saveJson(jsonDateFile, newFeed); err != nil {
+			return err
+		}
+
+		feed = newFeed
 	}
 
-	// join date
-	newFeed, changed := joinFeed(oldFeed, feed)
-	if !changed {
-		log.Printf("join feed, old=%d, new=%d, no changed, skip", len(oldFeed.Items), len(newFeed.Items))
+	if len(feed.Items) == 0 {
 		return nil
 	}
 
-	// save file
-	if err = saveJson(jsonFile, newFeed); err != nil {
-		return err
+	// save the latest file
+	{
+		jsonFile := fmt.Sprintf("json/%s/%s.json", "latest", path)
+		xmlFile := fmt.Sprintf("xml/%s.xml", path)
+		htmlDir := fmt.Sprintf("html/%s", path)
+
+		if err := saveJson(jsonFile, feed); err != nil {
+			return err
+		}
+		if err := saveXml(xmlFile, feed); err != nil {
+			return err
+		}
+		if err := saveHtml(htmlDir, feed); err != nil {
+			return err
+		}
 	}
-	return saveXml(xmlFile, newFeed)
+
+	return nil
 }
 
 // load exist data
@@ -114,4 +137,61 @@ func saveXml(xmlFile string, feed *fetch.Feed) error {
 		return err
 	}
 	return ioutil.WriteFile(xmlFile, bs, 0o666)
+}
+
+func saveHtml(htmlDir string, feed *fetch.Feed) error {
+	if err := os.MkdirAll(htmlDir, 0o777); err != nil {
+		return err
+	}
+	{
+		indexMdContent, err := generateFeedHtml(feed)
+		if err != nil {
+			return err
+		}
+		if err = ioutil.WriteFile(fmt.Sprintf("%s/index.html", htmlDir), []byte(indexMdContent), 0o666); err != nil {
+			return err
+		}
+		for _, v := range feed.Items {
+			if err = ioutil.WriteFile(fmt.Sprintf("%s/%s.html", htmlDir, helper.Md5(v.Link)), []byte(v.Description), 0o666); err != nil {
+				return err
+			}
+		}
+	}
+
+	return nil
+}
+
+func generateFeedHtml(feed *fetch.Feed) (string, error) {
+	type Item struct {
+		Title   string
+		Link    string
+		LinkMd5 string
+	}
+
+	type Feed struct {
+		Title string
+		Link  string
+		Items []*Item
+	}
+	data := &Feed{Title: feed.Title, Link: feed.Link}
+	for _, v := range feed.Items {
+		data.Items = append(data.Items, &Item{Title: v.Title, Link: v.Link, LinkMd5: helper.Md5(v.Link)})
+	}
+
+	return helper.BuildTemplate(`<!DOCTYPE html><html>
+
+<head>
+	<title>{{ .Title }}</title>
+</head>
+
+<body>
+	<ul>
+{{ range .Items }}
+		<li><a href="./{{ .LinkMd5 }}.html">{{ .Title }}</a></li>
+{{ end }}
+	</ul>
+</body>
+
+</html>
+`, data)
 }

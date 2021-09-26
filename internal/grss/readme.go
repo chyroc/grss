@@ -21,7 +21,12 @@ func updateReadme() error {
 				panic(err)
 			}
 			path := helper.JoinArgsURL(v.Path, args)
-			items = append(items, fmt.Sprintf("- [%s](/xml%s.xml): %s", path, path, source.Title))
+			items = append(items, fmt.Sprintf("| %s | %s | %s | %s |",
+				source.Title,
+				fmt.Sprintf("[JSON](./json/latest%s.json)", path),
+				fmt.Sprintf("[RSS](./xml%s.xml)", path),
+				fmt.Sprintf("[HTML](./html%s/index.html)", path),
+			))
 		}
 	}
 
@@ -35,6 +40,8 @@ Generate Tool: https://github.com/chyroc/grss
 
 ## Routers
 
+| Title | JSON | RSS | HTML |
+| ---   | ---  | --- | ---  |
 %s
 `, strings.Join(items, "\n"))
 

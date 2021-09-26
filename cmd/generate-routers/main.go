@@ -1,13 +1,13 @@
 package main
 
 import (
-	"bytes"
 	"io/fs"
 	"io/ioutil"
 	"path/filepath"
 	"sort"
 	"strings"
-	"text/template"
+
+	"github.com/chyroc/grss/internal/helper"
 )
 
 func main() {
@@ -110,16 +110,11 @@ func readInfo(path string) *FeedPkg {
 }
 
 func generateRouters(pkgList []*FeedPkg) string {
-	buf := new(bytes.Buffer)
-	t, err := template.New("").Parse(routersTemplate)
+	text, err := helper.BuildTemplate(routersTemplate, pkgList)
 	if err != nil {
 		panic(err)
 	}
-	err = t.Execute(buf, pkgList)
-	if err != nil {
-		panic(err)
-	}
-	return buf.String()
+	return text
 }
 
 var routersTemplate = `package routers
