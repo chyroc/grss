@@ -22,12 +22,12 @@ func New(map[string]string) (*fetch.Source, error) {
 		Parse: func(obj interface{}) (resp []*fetch.Item, err error) {
 			err = lambda.New(obj).Transfer(func(obj interface{}) interface{} {
 				return obj.(*zhihuBookstoreResp).Data
-			}).Array(func(idx int, obj interface{}) interface{} {
+			}).MapArray(func(idx int, obj interface{}) interface{} {
 				item := obj.(*zhihuBookstoreRespItem)
 
 				authers, _ := lambda.New(item).Transfer(func(obj interface{}) interface{} {
 					return obj.(*zhihuBookstoreRespItem).Authors
-				}).Array(func(idx int, v interface{}) interface{} {
+				}).MapArray(func(idx int, v interface{}) interface{} {
 					return v.(*zhihuBookstoreRespItemAuther).Name
 				}).Join("、")
 
