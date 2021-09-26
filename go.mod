@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/PuerkitoBio/goquery v1.7.1
 	github.com/chyroc/baidufanyi v0.2.0
-	github.com/chyroc/go-feedbin v0.1.0
+	github.com/chyroc/go-feedbin v0.2.0
 	github.com/chyroc/go-lambda v0.4.0
 	github.com/chyroc/gorequests v0.27.0
 	github.com/codesoap/rss2 v0.0.0-20190809124225-998b8c993049

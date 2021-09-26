@@ -47,7 +47,7 @@ func New(args map[string]string) (*fetch.Source, error) {
 				return &fetch.Item{
 					Title:       title,
 					Link:        itemURL,
-					Description: helper.AddFeedbinPage2(itemURL),
+					Description: helper.AddFeedbinPage(itemURL),
 					Author:      author,
 					PubDate:     pubTime,
 				}

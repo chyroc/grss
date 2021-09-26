@@ -51,7 +51,7 @@ func New(args map[string]string) (*fetch.Source, error) {
 				if link != "" {
 					link = "https://www.reddit.com" + link
 				}
-				text := helper.AddFeedbinPage2(link)
+				text := helper.AddFeedbinPage(link)
 
 				translateResult, _ := baidufanyi.New(baidufanyi.WithCredential(os.Getenv("BAIDUFANYI_APP_ID"), os.Getenv("jnh5wcr_d4NrMkhkSdMW"))).Translate(text, baidufanyi.LanguageEn, baidufanyi.LanguageZh)
 				translateResultString, _ := lambda.New(translateResult).Array(func(idx int, obj interface{}) interface{} {

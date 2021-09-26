@@ -2,32 +2,24 @@ package helper
 
 import (
 	"context"
+	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/chyroc/go-feedbin"
 )
 
-var Feedbin = feedbin.New(feedbin.WithCredential(os.Getenv("FEEDBIN_USERNAME"), os.Getenv("FEEDBIN_PASSWORD")))
+var Feedbin = feedbin.New(
+	feedbin.WithCredential(os.Getenv("FEEDBIN_USERNAME"), os.Getenv("FEEDBIN_PASSWORD")),
+	feedbin.WithTimeout(time.Second*10),
+)
 
-func AddFeedbinPage(url string) (string, error) {
+func AddFeedbinPage(url string) string {
 	for i := 0; i < 3; i++ {
 		resp, err := Feedbin.CreatePage(context.Background(), &feedbin.CreatePageReq{URL: url})
 		if err != nil {
-			if i < 3-1 {
-				continue
-			}
-			return "", err
-		}
-		return resp.Content, nil
-	}
-	panic("unreachable")
-}
-
-func AddFeedbinPage2(url string) string {
-	for i := 0; i < 3; i++ {
-		resp, err := Feedbin.CreatePage(context.Background(), &feedbin.CreatePageReq{URL: url})
-		if err != nil {
+			log.Printf("[feedbin] create_page %q failed: %s", url, err)
 			if i < 3-1 {
 				continue
 			}

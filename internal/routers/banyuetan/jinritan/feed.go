@@ -40,7 +40,7 @@ func New(map[string]string) (*fetch.Source, error) {
 				return &fetch.Item{
 					Title:       title,
 					Link:        link,
-					Description: helper.AddFeedbinPage2(link),
+					Description: helper.AddFeedbinPage(link),
 				}
 			}).ToList(&items)
 			if err != nil {

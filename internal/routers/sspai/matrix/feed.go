@@ -32,7 +32,7 @@ func New(map[string]string) (*fetch.Source, error) {
 				return &fetch.Item{
 					Title:       strings.TrimSpace(item.Title),
 					Link:        link,
-					Description: helper.AddFeedbinPage2(link),
+					Description: helper.AddFeedbinPage(link),
 					Author:      strings.TrimSpace(item.Author.Nickname),
 					PubDate:     time.Unix(item.ReleasedAt, 0),
 				}
