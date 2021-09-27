@@ -3,6 +3,7 @@ package routers
 import (
 	"github.com/chyroc/grss/internal/fetch"
 	"github.com/chyroc/grss/internal/routers/banyuetan/jinritan"
+	"github.com/chyroc/grss/internal/routers/dev_to/feed"
 	"github.com/chyroc/grss/internal/routers/lobste/home"
 	"github.com/chyroc/grss/internal/routers/pingwest/status"
 	"github.com/chyroc/grss/internal/routers/reddit/community/hot"
@@ -20,6 +21,7 @@ import (
 
 func init() {
 	Register("/banyuetan/jinritan", banyuetan_jinritan.New)
+	Register("/dev_to/feed", dev_to_feed.New)
 	Register("/lobste/home", lobste_home.New)
 	Register("/pingwest/status", pingwest_status.New)
 	Register("/reddit/community/hot/:r", reddit_community_hot.New,
