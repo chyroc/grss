@@ -34,9 +34,3 @@ jobs:
 
     - name: Upload Cov
       run: bash <(curl -s https://codecov.io/bash)
-
-    - name: Trigger Git RSS
-      run: |
-        ./.github/trigger_rss_gen.sh
-      env:
-        DISPATCH_ACTION_TOKEN: ${{ secrets.DISPATCH_ACTION_TOKEN }}
