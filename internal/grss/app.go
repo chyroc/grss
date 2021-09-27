@@ -1,6 +1,7 @@
 package grss
 
 import (
+	"flag"
 	"log"
 
 	"github.com/chyroc/grss/internal/fetch"
@@ -9,6 +10,10 @@ import (
 )
 
 func Run() {
+	path := ""
+	flag.StringVar(&path, "path", "", "path")
+	flag.Parse()
+
 	routers, err := loadRouters()
 	if err != nil {
 		panic(err)
@@ -16,6 +21,12 @@ func Run() {
 	log.Printf("load %d router", len(routers))
 
 	for _, router := range routers {
+		if path != "" && router.Path != path {
+			log.Printf("[grss] skip %q", router.Path)
+			continue
+		} else {
+			log.Printf("[grss] gen %q", router.Path)
+		}
 		sourceGetter := router.Source
 
 		if len(router.Args) == 0 {

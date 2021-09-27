@@ -11,6 +11,7 @@ import (
 	"github.com/chyroc/grss/internal/routers/sspai/matrix"
 	"github.com/chyroc/grss/internal/routers/trends_vc/archive"
 	"github.com/chyroc/grss/internal/routers/v2ex/latest"
+	"github.com/chyroc/grss/internal/routers/weibo/user/origin"
 	"github.com/chyroc/grss/internal/routers/woshipm/latest"
 	"github.com/chyroc/grss/internal/routers/xueqiu/livenews"
 	"github.com/chyroc/grss/internal/routers/xueqiu/snb_article"
@@ -34,6 +35,9 @@ func init() {
 	Register("/sspai/matrix", sspai_matrix.New)
 	Register("/trends_vc/archive", trends_vc_archive.New)
 	Register("/v2ex/latest", v2ex_latest.New)
+	Register("/weibo/user/origin/:uid", weibo_user_origin.New,
+		map[string]string{"uid": "1088413295"},
+	)
 	Register("/woshipm/latest", woshipm_latest.New)
 	Register("/xueqiu/livenews", xueqiu_livenews.New)
 	Register("/xueqiu/snb_article", xueqiu_snb_article.New)
