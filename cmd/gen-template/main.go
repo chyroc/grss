@@ -40,6 +40,7 @@ import (
 
 	"github.com/chyroc/go-lambda"
 	"github.com/chyroc/grss/internal/fetch"
+"github.com/PuerkitoBio/goquery"
 	"github.com/chyroc/grss/internal/helper"
 )
 
@@ -51,7 +52,6 @@ func New(map[string]string) (*fetch.Source, error) {
 		Link:        link,
 
 		Fetch: func() (interface{}, error) {
-			text, err := new(sspaiMatrixResp)
 			text,err := helper.Req.New(http.MethodGet, link).Text()
 			return text,err
 		},
@@ -60,7 +60,7 @@ func New(map[string]string) (*fetch.Source, error) {
 				if err != nil {
 					return nil, err
 				}
-				itemSelections := helper.Selection2List(q.Find(`+"`"+`section.item`+"`"+`))
+				itemSelections := helper.Selection2List(doc.Find(`+"`"+`section.item`+"`"+`))
 
 			err = lambda.New(itemSelections).MapArrayAsync(func(idx int, obj interface{}) interface{} {
 								title := strings.TrimSpace()
