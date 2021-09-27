@@ -39,4 +39,4 @@ jobs:
       run: |
         ./.github/trigger_rss_gen.sh
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DISPATCH_ACTION_TOKEN: ${{ secrets.DISPATCH_ACTION_TOKEN }}
