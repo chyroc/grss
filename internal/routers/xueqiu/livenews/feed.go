@@ -67,5 +67,5 @@ type xueqiuLivenewsRespItem struct {
 }
 
 func (r *xueqiuLivenewsRespItem) Title() string {
-	return helper.InterceptString(r.Text, 25, " ...")
+	return r.Text
 }
