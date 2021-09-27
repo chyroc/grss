@@ -21,5 +21,4 @@ func Test_Feed(t *testing.T) {
 	spew.Dump(feed)
 	as.True(len(feed.Items) > 0)
 	as.NotEqual(feed.Items[0].Link, feed.Items[1].Link)
-	as.NotEmpty(feed.Items[0].Description)
 }
