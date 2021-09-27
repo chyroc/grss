@@ -6,7 +6,6 @@ import (
 
 	"github.com/chyroc/go-lambda"
 	"github.com/chyroc/grss/internal/fetch"
-	"github.com/chyroc/grss/internal/helper"
 	"github.com/chyroc/grss/internal/routers/xueqiu/internal"
 )
 
@@ -32,7 +31,7 @@ func New(map[string]string) (*fetch.Source, error) {
 			err = lambda.New(obj.(*xueqiuLivenewsResp).Items).MapArray(func(idx int, obj interface{}) interface{} {
 				item := obj.(*xueqiuLivenewsRespItem)
 				return &fetch.Item{
-					Title:       item.Title(),
+					Title:       item.Text,
 					Link:        internal.JoinURL(item.Target),
 					Description: item.Text,
 					PubDate:     time.Unix(item.CreatedAt/1000, 0),
@@ -64,8 +63,4 @@ type xueqiuLivenewsRespItem struct {
 	StatusID   int    `json:"status_id"`
 	ReplyCount int    `json:"reply_count"`
 	ShareCount int    `json:"share_count"`
-}
-
-func (r *xueqiuLivenewsRespItem) Title() string {
-	return helper.InterceptString(r.Text, 25, " ...")
 }
