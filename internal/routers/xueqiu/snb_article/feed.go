@@ -6,6 +6,7 @@ import (
 
 	"github.com/chyroc/go-lambda"
 	"github.com/chyroc/grss/internal/fetch"
+	"github.com/chyroc/grss/internal/helper"
 	"github.com/chyroc/grss/internal/routers/xueqiu/internal"
 )
 
@@ -75,8 +76,5 @@ func (r *xueqiuSnbArticleRespItem) Title() string {
 	if r.OriginalStatus.Title != "" {
 		return r.OriginalStatus.Title
 	}
-	if len(r.OriginalStatus.Description) >= 25 {
-		return r.OriginalStatus.Description[:25] + " ..."
-	}
-	return r.OriginalStatus.Description
+	return helper.InterceptString(r.OriginalStatus.Description, 25, " ...")
 }

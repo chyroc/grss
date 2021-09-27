@@ -6,6 +6,7 @@ import (
 
 	"github.com/chyroc/go-lambda"
 	"github.com/chyroc/grss/internal/fetch"
+	"github.com/chyroc/grss/internal/helper"
 	"github.com/chyroc/grss/internal/routers/xueqiu/internal"
 )
 
@@ -66,8 +67,5 @@ type xueqiuLivenewsRespItem struct {
 }
 
 func (r *xueqiuLivenewsRespItem) Title() string {
-	if len(r.Text) >= 25 {
-		return r.Text[:25] + " ..."
-	}
-	return r.Text
+	return helper.InterceptString(r.Text, 25, " ...")
 }
