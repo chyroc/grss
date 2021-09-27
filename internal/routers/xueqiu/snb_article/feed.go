@@ -2,12 +2,11 @@ package xueqiu_snb_article
 
 import (
 	"fmt"
-	"net/http"
 	"time"
 
 	"github.com/chyroc/go-lambda"
 	"github.com/chyroc/grss/internal/fetch"
-	"github.com/chyroc/grss/internal/helper"
+	"github.com/chyroc/grss/internal/routers/xueqiu/internal"
 )
 
 func New(map[string]string) (*fetch.Source, error) {
@@ -19,7 +18,8 @@ func New(map[string]string) (*fetch.Source, error) {
 		Fetch: func() (interface{}, error) {
 			uri := fmt.Sprintf("https://xueqiu.com/statuses/hot/listV2.json?since_id=-1&max_id=-1&size=20")
 			resp := new(xueqiuSnbArticleResp)
-			err := helper.Req.New(http.MethodGet, uri).Unmarshal(resp)
+			// err := helper.Req.New(http.MethodGet, uri).Unmarshal(resp)
+			err := internal.Request(link, uri, resp)
 			if err != nil {
 				return nil, err
 			} else if resp.Err != "" {

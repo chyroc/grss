@@ -11,6 +11,7 @@ import (
 	"github.com/chyroc/grss/internal/routers/trends_vc/archive"
 	"github.com/chyroc/grss/internal/routers/v2ex/latest"
 	"github.com/chyroc/grss/internal/routers/woshipm/latest"
+	"github.com/chyroc/grss/internal/routers/xueqiu/livenews"
 	"github.com/chyroc/grss/internal/routers/xueqiu/snb_article"
 	"github.com/chyroc/grss/internal/routers/ycombinator/best"
 	"github.com/chyroc/grss/internal/routers/ycombinator/newest"
@@ -32,6 +33,7 @@ func init() {
 	Register("/trends_vc/archive", trends_vc_archive.New)
 	Register("/v2ex/latest", v2ex_latest.New)
 	Register("/woshipm/latest", woshipm_latest.New)
+	Register("/xueqiu/livenews", xueqiu_livenews.New)
 	Register("/xueqiu/snb_article", xueqiu_snb_article.New)
 	Register("/ycombinator/best", ycombinator_best.New)
 	Register("/ycombinator/newest", ycombinator_newest.New)
