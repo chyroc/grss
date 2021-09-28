@@ -76,5 +76,5 @@ func (r *xueqiuSnbArticleRespItem) Title() string {
 	if r.OriginalStatus.Title != "" {
 		return r.OriginalStatus.Title
 	}
-	return helper.InterceptString(r.OriginalStatus.Description, 100, " ...")
+	return helper.ToTitleText(r.OriginalStatus.Description, 100, " ...")
 }

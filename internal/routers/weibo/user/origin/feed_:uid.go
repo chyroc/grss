@@ -41,7 +41,7 @@ func New(args map[string]string) (*fetch.Source, error) {
 			}).MapArray(func(idx int, obj interface{}) interface{} {
 				item := obj.(*getContainerRespCard)
 
-				title := strings.TrimSpace(helper.InterceptString(item.Mblog.Text, 100, " ..."))
+				title := strings.TrimSpace(helper.ToTitleText(item.Mblog.Text, 100, " ..."))
 				link := fmt.Sprintf("https://m.weibo.cn/detail/%s", item.Mblog.ID)
 				desc := item.Mblog.Text
 				for _, pic := range item.Mblog.Pics {
