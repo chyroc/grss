@@ -45,7 +45,7 @@ func New(args map[string]string) (*fetch.Source, error) {
 				link := fmt.Sprintf("https://m.weibo.cn/detail/%s", item.Mblog.ID)
 				desc := item.Mblog.Text
 				for _, pic := range item.Mblog.Pics {
-					desc += fmt.Sprintf("<div><img src=%q/></div>", pic.URL)
+					desc += fmt.Sprintf("<div><img src=%q/></div>", pic.Large.URL)
 				}
 				pubTime, _ := time.Parse("Mon Jan 02 15:04:05 -0700 2006", item.Mblog.CreatedAt)
 
