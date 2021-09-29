@@ -36,7 +36,7 @@ func New(map[string]string) (*fetch.Source, error) {
 					Author:      strings.TrimSpace(item.Author.Nickname),
 					PubDate:     time.Unix(item.ReleasedAt, 0),
 				}
-			}).ToList(&resp)
+			}).ToObject(&resp)
 			if err != nil {
 				return nil, err
 			}

@@ -56,7 +56,7 @@ func New(map[string]string) (*fetch.Source, error) {
 					Description: helper.AddFeedbinPage(link),
 					PubDate:     pubDate,
 				}
-			}).ToList(&items)
+			}).ToObject(&items)
 			return items, err
 		},
 	}, nil

@@ -73,7 +73,7 @@ func New(map[string]string) (*fetch.Source, error) {
 					Author:      "",
 					PubDate:     "",
 				}
-			}).ToList(&resp)
+			}).ToObject(&resp)
 			if err != nil {
 				return nil, err
 			}

@@ -29,7 +29,7 @@ func New(map[string]string) (*fetch.Source, error) {
 					Author:      item.Member.Username,
 					PubDate:     time.Unix(item.Created, 0),
 				}, nil
-			}).ToList(&resp)
+			}).ToObject(&resp)
 			return resp, err
 		},
 	}, nil

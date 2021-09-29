@@ -20,7 +20,7 @@ func updateReadme() error {
 			if err != nil {
 				panic(err)
 			}
-			path := helper.JoinArgsURL(v.Path, args)
+			path := helper.ToJoinArgsURL(v.Path, args)
 			items = append(items, fmt.Sprintf("| %s | %s | %s | %s |",
 				source.Title,
 				fmt.Sprintf("[JSON](./json/latest%s.json)", path),

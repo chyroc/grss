@@ -28,7 +28,7 @@ func New(map[string]string) (*fetch.Source, error) {
 				return nil, err
 			}
 
-			err = lambda.New(helper.Selection2List(doc.Find(".story"))).MapArray(func(idx int, obj interface{}) interface{} {
+			err = lambda.New(helper.Selection2List(doc.Find(".story"))).MapList(func(idx int, obj interface{}) interface{} {
 				s := obj.(*goquery.Selection)
 
 				a := s.Find("a.u-url")
@@ -50,7 +50,7 @@ func New(map[string]string) (*fetch.Source, error) {
 					Author:      author,
 					PubDate:     pubTime,
 				}
-			}).ToList(&resp)
+			}).ToObject(&resp)
 			if err != nil {
 				return nil, err
 			}

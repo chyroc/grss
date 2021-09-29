@@ -51,7 +51,7 @@ func New(args map[string]string) (*fetch.Source, error) {
 					Author:      author,
 					PubDate:     pubTime,
 				}
-			}).ToList(&resp)
+			}).ToObject(&resp)
 			if err != nil {
 				return nil, err
 			}

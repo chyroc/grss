@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func JoinURL(target string) string {
+func ToJoinURL(target string) string {
 	if strings.HasPrefix(target, "https://xueqiu.com") || strings.HasPrefix(target, "http://xueqiu.com") {
 		return target
 	}

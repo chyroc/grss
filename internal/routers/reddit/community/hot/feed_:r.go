@@ -54,9 +54,9 @@ func New(args map[string]string) (*fetch.Source, error) {
 				text := helper.AddFeedbinPage(link)
 
 				translateResult, _ := baidufanyi.New(baidufanyi.WithCredential(os.Getenv("BAIDUFANYI_APP_ID"), os.Getenv("jnh5wcr_d4NrMkhkSdMW"))).Translate(text, baidufanyi.LanguageEn, baidufanyi.LanguageZh)
-				translateResultString, _ := lambda.New(translateResult).MapArray(func(idx int, obj interface{}) interface{} {
+				translateResultString, _ := lambda.New(translateResult).MapList(func(idx int, obj interface{}) interface{} {
 					return obj.(*baidufanyi.TranslateResult).Dst
-				}).ToStringList()
+				}).ToStringSlice()
 				if len(translateResultString) > 0 {
 					text = strings.Join(translateResultString, "\n") + "\n\n\n" + text
 				}
@@ -66,7 +66,7 @@ func New(args map[string]string) (*fetch.Source, error) {
 					Link:        link,
 					Description: text,
 				}, nil
-			}).ToList(&resp)
+			}).ToObject(&resp)
 			return resp, err
 		},
 	}, nil

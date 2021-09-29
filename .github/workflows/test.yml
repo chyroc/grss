@@ -26,7 +26,6 @@ jobs:
 
     - name: Test
       run: |
-        export IN_CI=1
         ./.github/test.sh
       env:
         FEEDBIN_USERNAME: ${{ secrets.FEEDBIN_USERNAME }}

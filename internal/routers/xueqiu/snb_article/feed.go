@@ -29,7 +29,7 @@ func New(map[string]string) (*fetch.Source, error) {
 			return resp, err
 		},
 		Parse: func(obj interface{}) (resp []*fetch.Item, err error) {
-			err = lambda.New(obj.(*xueqiuSnbArticleResp).Items).MapArray(func(idx int, obj interface{}) interface{} {
+			err = lambda.New(obj.(*xueqiuSnbArticleResp).Items).MapList(func(idx int, obj interface{}) interface{} {
 				item := obj.(*xueqiuSnbArticleRespItem)
 				return &fetch.Item{
 					Title:       item.Title(),
@@ -38,7 +38,7 @@ func New(map[string]string) (*fetch.Source, error) {
 					Author:      item.OriginalStatus.User.ScreenName,
 					PubDate:     time.Unix(item.OriginalStatus.CreatedAt/1000, 0),
 				}
-			}).ToList(&resp)
+			}).ToObject(&resp)
 
 			if err != nil {
 				return nil, err

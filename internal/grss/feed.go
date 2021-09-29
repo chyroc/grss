@@ -29,10 +29,10 @@ func DumpFeed(path string, feed *fetch.Feed) error {
 			return err
 		}
 
-		// join date
-		newFeed, changed := joinFeed(oldFeed, feed)
+		// ToJoin date
+		newFeed, changed := ToJoinFeed(oldFeed, feed)
 		if !changed {
-			log.Printf("join feed, old=%d, new=%d, no changed, skip", len(oldFeed.Items), len(newFeed.Items))
+			log.Printf("ToJoin feed, old=%d, new=%d, no changed, skip", len(oldFeed.Items), len(newFeed.Items))
 			return nil
 		}
 		if err = saveJson(jsonDateFile, newFeed); err != nil {
@@ -80,7 +80,7 @@ func loadExistFeed(jsonFile string) (*fetch.Feed, error) {
 	return oldFeed, err
 }
 
-func joinFeed(oldFeed, newFeed *fetch.Feed) (*fetch.Feed, bool) {
+func ToJoinFeed(oldFeed, newFeed *fetch.Feed) (*fetch.Feed, bool) {
 	changed := false
 	done := map[string]bool{}
 	for _, v := range newFeed.Items {

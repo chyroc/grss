@@ -38,7 +38,7 @@ func New(map[string]string) (*fetch.Source, error) {
 					Author:      item.User.Username,
 					PubDate:     time.Unix(item.PublishedAtInt, 10),
 				}
-			}).ToList(&resp)
+			}).ToObject(&resp)
 			if err != nil {
 				return nil, err
 			}

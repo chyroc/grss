@@ -26,7 +26,7 @@ func New(args map[string]string) (*fetch.Source, error) {
 			return entry, err
 		},
 		Parse: func(obj interface{}) (resp []*fetch.Item, err error) {
-			err = lambda.New(obj.([]*twitter_internal.GetUserTwitterRespEntry)).FilterArray(func(idx int, obj interface{}) bool {
+			err = lambda.New(obj.([]*twitter_internal.GetUserTwitterRespEntry)).FilterList(func(idx int, obj interface{}) bool {
 				return !obj.(*twitter_internal.GetUserTwitterRespEntry).IsRetwitter()
 			}).MapArrayAsync(func(idx int, obj interface{}) interface{} {
 				entry := obj.(*twitter_internal.GetUserTwitterRespEntry)
@@ -40,7 +40,7 @@ func New(args map[string]string) (*fetch.Source, error) {
 					Author:      user.Legacy.Name,
 					PubDate:     pubTime,
 				}
-			}).ToList(&resp)
+			}).ToObject(&resp)
 			if err != nil {
 				return nil, err
 			}

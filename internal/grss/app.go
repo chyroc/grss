@@ -33,7 +33,7 @@ func Run() {
 			router.Args = []map[string]string{nil}
 		}
 		for _, args := range router.Args {
-			path := helper.JoinArgsURL(router.Path, args)
+			path := helper.ToJoinArgsURL(router.Path, args)
 
 			feed, err := fetch.Fetch(sourceGetter, args)
 			if err != nil {

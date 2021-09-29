@@ -29,7 +29,7 @@ func New(map[string]string) (*fetch.Source, error) {
 					return nil, err
 				}
 				return resp.Payload, nil
-			}).Flatten().ToList(&items)
+			}).Flatten().ToObject(&items)
 			if err != nil {
 				return nil, err
 			}
@@ -49,7 +49,7 @@ func New(map[string]string) (*fetch.Source, error) {
 					Description: helper.AddFeedbinPage(link),
 					PubDate:     pubDate,
 				}
-			}).ToList(&items)
+			}).ToObject(&items)
 			if err != nil {
 				return nil, err
 			}

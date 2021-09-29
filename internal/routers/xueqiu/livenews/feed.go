@@ -28,15 +28,15 @@ func New(map[string]string) (*fetch.Source, error) {
 			return resp, err
 		},
 		Parse: func(obj interface{}) (resp []*fetch.Item, err error) {
-			err = lambda.New(obj.(*xueqiuLivenewsResp).Items).MapArray(func(idx int, obj interface{}) interface{} {
+			err = lambda.New(obj.(*xueqiuLivenewsResp).Items).MapList(func(idx int, obj interface{}) interface{} {
 				item := obj.(*xueqiuLivenewsRespItem)
 				return &fetch.Item{
 					Title:       item.Text,
-					Link:        internal.JoinURL(item.Target),
+					Link:        internal.ToJoinURL(item.Target),
 					Description: item.Text,
 					PubDate:     time.Unix(item.CreatedAt/1000, 0),
 				}
-			}).ToList(&resp)
+			}).ToObject(&resp)
 
 			if err != nil {
 				return nil, err

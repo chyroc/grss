@@ -32,13 +32,13 @@ func New(args map[string]string) (*fetch.Source, error) {
 			err := lambda.New([]int{1, 2}).MapArrayAsyncWithErr(func(idx int, obj interface{}) (interface{}, error) {
 				cards, err := getContainerCard(uid, containerID, obj.(int))
 				return cards, err
-			}).Flatten().ToList(&cards)
+			}).Flatten().ToObject(&cards)
 			return cards, err
 		},
 		Parse: func(obj interface{}) (resp []*fetch.Item, err error) {
-			err = lambda.New(obj.([]*getContainerRespCard)).FilterArray(func(idx int, obj interface{}) bool {
+			err = lambda.New(obj.([]*getContainerRespCard)).FilterList(func(idx int, obj interface{}) bool {
 				return obj.(*getContainerRespCard).Mblog != nil && obj.(*getContainerRespCard).Mblog.RetweetedStatus == nil
-			}).MapArray(func(idx int, obj interface{}) interface{} {
+			}).MapList(func(idx int, obj interface{}) interface{} {
 				item := obj.(*getContainerRespCard)
 
 				title := strings.TrimSpace(helper.ToTitleText(item.Mblog.Text, 100, " ..."))
@@ -56,7 +56,7 @@ func New(args map[string]string) (*fetch.Source, error) {
 					Author:      item.Mblog.User.ScreenName,
 					PubDate:     pubTime,
 				}
-			}).ToList(&resp)
+			}).ToObject(&resp)
 			if err != nil {
 				return nil, err
 			}

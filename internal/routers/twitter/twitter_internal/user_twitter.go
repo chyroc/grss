@@ -33,9 +33,9 @@ func (r *Twitter) GetUserTwitter(userRestID string) ([]*GetUserTwitterRespEntry,
 	// spew.Dump(text)
 
 	resp2 := []*GetUserTwitterRespEntry{}
-	err = lambda.New(resp.Data.User.Result.Timeline.Timeline.Instructions[0].Entries).FilterArray(func(idx int, obj interface{}) bool {
+	err = lambda.New(resp.Data.User.Result.Timeline.Timeline.Instructions[0].Entries).FilterList(func(idx int, obj interface{}) bool {
 		return obj.(*GetUserTwitterRespEntry).Content.EntryType != "TimelineTimelineCursor"
-	}).ToList(&resp2)
+	}).ToObject(&resp2)
 	return resp2, err
 }
 

@@ -22,14 +22,14 @@ func New(map[string]string) (*fetch.Source, error) {
 		Parse: func(obj interface{}) (resp []*fetch.Item, err error) {
 			err = lambda.New(obj).Transfer(func(obj interface{}) interface{} {
 				return obj.(*zhihuBookstoreResp).Data
-			}).MapArray(func(idx int, obj interface{}) interface{} {
+			}).MapList(func(idx int, obj interface{}) interface{} {
 				item := obj.(*zhihuBookstoreRespItem)
 
 				authers, _ := lambda.New(item).Transfer(func(obj interface{}) interface{} {
 					return obj.(*zhihuBookstoreRespItem).Authors
-				}).MapArray(func(idx int, v interface{}) interface{} {
+				}).MapList(func(idx int, v interface{}) interface{} {
 					return v.(*zhihuBookstoreRespItemAuther).Name
-				}).Join("、")
+				}).ToJoin("、")
 
 				img := regexp.MustCompile(`_.+\.jpg`).ReplaceAllString(item.Cover, ".jpg")
 
@@ -42,7 +42,7 @@ func New(map[string]string) (*fetch.Source, error) {
           %s<br><br>
           价格: %d元`, img, item.Title, authers, item.Description, item.Promotion.Price/100),
 				}
-			}).ToList(&resp)
+			}).ToObject(&resp)
 			return resp, err
 		},
 	}, nil
