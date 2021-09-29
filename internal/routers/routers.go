@@ -41,6 +41,7 @@ func init() {
 	Register("/v2ex/latest", v2ex_latest.New)
 	Register("/weibo/user/origin/:uid", weibo_user_origin.New,
 		map[string]string{"uid": "1088413295"},
+		map[string]string{"uid": "5722964389"},
 	)
 	Register("/woshipm/latest", woshipm_latest.New)
 	Register("/xueqiu/livenews", xueqiu_livenews.New)

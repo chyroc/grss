@@ -13,6 +13,7 @@ import (
 )
 
 // args: map[string]string{"uid": "1088413295"}
+// args: map[string]string{"uid": "5722964389"}
 func New(args map[string]string) (*fetch.Source, error) {
 	uid := args["uid"]
 
@@ -124,22 +125,12 @@ type getContainerRespCardMblog struct {
 	IsLongText bool `json:"isLongText"`
 	PicNum     int  `json:"pic_num"`
 	Pics       []struct {
-		Pid  string `json:"pid"`
-		URL  string `json:"url"`
-		Size string `json:"size"`
-		Geo  struct {
-			Width  int  `json:"width"`
-			Height int  `json:"height"`
-			Croped bool `json:"croped"`
-		} `json:"geo"`
+		Pid   string `json:"pid"`
+		URL   string `json:"url"`
+		Size  string `json:"size"`
 		Large struct {
 			Size string `json:"size"`
 			URL  string `json:"url"`
-			Geo  struct {
-				Width  string `json:"width"`
-				Height string `json:"height"`
-				Croped bool   `json:"croped"`
-			} `json:"geo"`
 		} `json:"large"`
 	} `json:"pics"`
 	Bid string `json:"bid"`

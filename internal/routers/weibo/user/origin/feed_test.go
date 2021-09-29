@@ -12,7 +12,7 @@ import (
 func Test_Feed(t *testing.T) {
 	as := assert.New(t)
 
-	feed, err := fetch.Fetch(weibo_user_origin.New, map[string]string{"uid": "1088413295"})
+	feed, err := fetch.Fetch(weibo_user_origin.New, map[string]string{"uid": "5722964389"})
 	as.Nil(err)
 
 	as.Equal("微博 - Easy 原创微博", feed.Title)

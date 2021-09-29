@@ -234,7 +234,7 @@ func (r *GetUserTwitterRespEntry) OriginHtml() string {
 			continue
 		}
 		if strings.Contains(text, v.URL) {
-			text=strings.ReplaceAll(text, v.URL, fmt.Sprintf("<div><img src=%q alt=%q/></div>", v.MediaURLHTTPS, v.URL))
+			text = strings.ReplaceAll(text, v.URL, fmt.Sprintf("<div><img src=%q alt=%q/></div>", v.MediaURLHTTPS, v.URL))
 		}
 	}
 	return text
