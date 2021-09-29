@@ -34,9 +34,9 @@ func New(args map[string]string) (*fetch.Source, error) {
 				pubTime, _ := time.Parse("Mon Jan 02 15:04:05 -0700 2006", entry.Content.ItemContent.TweetResults.Result.Legacy.CreatedAt)
 
 				return &fetch.Item{
-					Title:       helper.ToTitleText(entry.Content.ItemContent.TweetResults.Result.Legacy.FullText, 100, " ..."),
+					Title:       helper.ToTitleText(entry.OriginHtml(), 100, " ..."),
 					Link:        link,
-					Description: entry.Content.ItemContent.TweetResults.Result.Legacy.FullText,
+					Description: entry.OriginHtml(),
 					Author:      user.Legacy.Name,
 					PubDate:     pubTime,
 				}

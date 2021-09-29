@@ -4,8 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/chyroc/go-lambda"
+	"github.com/chyroc/grss/internal/helper"
 )
 
 func (r *Twitter) GetUserTwitter(userRestID string) ([]*GetUserTwitterRespEntry, error) {
@@ -194,6 +196,11 @@ type getUserTwitterRespTwitterResult struct {
 				Urls     []interface{} `json:"urls"`
 				Hashtags []interface{} `json:"hashtags"`
 				Symbols  []interface{} `json:"symbols"`
+				Media    []struct {
+					MediaURLHTTPS string `json:"media_url_https"`
+					Type          string `json:"type"`
+					URL           string `json:"url"`
+				} `json:"media"`
 			} `json:"entities"`
 			FavoriteCount         int                              `json:"favorite_count"`
 			Favorited             bool                             `json:"favorited"`
@@ -218,4 +225,17 @@ func (r *GetUserTwitterRespEntry) RetweetedResult() *getUserTwitterRespTwitterRe
 
 func (r *GetUserTwitterRespEntry) IsRetwitter() bool {
 	return r.RetweetedResult() != nil
+}
+
+func (r *GetUserTwitterRespEntry) OriginHtml() string {
+	text := helper.ToHtml(r.Content.ItemContent.TweetResults.Result.Legacy.FullText)
+	for _, v := range r.Content.ItemContent.TweetResults.Result.Legacy.Entities.Media {
+		if v.Type != "photo" {
+			continue
+		}
+		if strings.Contains(text, v.URL) {
+			text=strings.ReplaceAll(text, v.URL, fmt.Sprintf("<div><img src=%q alt=%q/></div>", v.MediaURLHTTPS, v.URL))
+		}
+	}
+	return text
 }

@@ -1,6 +1,7 @@
 package helper
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -18,4 +19,12 @@ func ToTitleText(s string, size int, padding string) string {
 		return s
 	}
 	return string(ss[:size]) + padding
+}
+
+func ToHtml(s string) string {
+	res := []string{}
+	for _, v := range strings.Split(s, "\n") {
+		res = append(res, fmt.Sprintf("<div>%s</div>", v))
+	}
+	return fmt.Sprintf("<div>\n%s\n</div>", strings.Join(res, "\n"))
 }
