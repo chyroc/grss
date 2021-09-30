@@ -14,6 +14,9 @@ import (
 )
 
 // args: map[string]string{"r": "golang"}
+// args: map[string]string{"r": "tech"}
+// args: map[string]string{"r": "technology"}
+// args: map[string]string{"r": "geek"}
 func New(args map[string]string) (*fetch.Source, error) {
 	r := args["r"]
 	link := fmt.Sprintf("https://www.reddit.com/r/%s/hot/", r)

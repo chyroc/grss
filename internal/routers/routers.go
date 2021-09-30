@@ -28,6 +28,9 @@ func init() {
 	Register("/pingwest/status", pingwest_status.New)
 	Register("/reddit/community/hot/:r", reddit_community_hot.New,
 		map[string]string{"r": "golang"},
+		map[string]string{"r": "tech"},
+		map[string]string{"r": "technology"},
+		map[string]string{"r": "geek"},
 	)
 	Register("/sspai/column/:id", sspai_column.New,
 		map[string]string{"id": "264"},
