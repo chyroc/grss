@@ -38,6 +38,8 @@ Homepage: https://rss.chyroc.cn
 
 Generate Tool: https://github.com/chyroc/grss
 
+Report Issue: https://github.com/chyroc/grss/issues
+
 ## Routers
 
 | Title | JSON | RSS | HTML |
