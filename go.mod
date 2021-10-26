@@ -3,7 +3,7 @@ module github.com/chyroc/grss
 go 1.17
 
 require (
-	github.com/PuerkitoBio/goquery v1.7.1
+	github.com/PuerkitoBio/goquery v1.8.0
 	github.com/chyroc/baidufanyi v0.2.0
 	github.com/chyroc/go-feedbin v0.3.0
 	github.com/chyroc/go-lambda v0.8.0
@@ -14,7 +14,7 @@ require (
 )
 
 require (
-	github.com/andybalholm/cascadia v1.2.0 // indirect
+	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/chyroc/persistent-cookiejar v0.1.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rogpeppe/go-internal v1.8.0 // indirect
