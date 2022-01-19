@@ -14,10 +14,7 @@ func Run() {
 	flag.StringVar(&path, "path", "", "path")
 	flag.Parse()
 
-	routers, err := loadRouters()
-	if err != nil {
-		panic(err)
-	}
+	routers := routers.Get()
 	log.Printf("load %d router", len(routers))
 
 	for _, router := range routers {
@@ -51,10 +48,4 @@ func Run() {
 	if err := updateReadme(); err != nil {
 		log.Printf("update readme failed: %s", err)
 	}
-}
-
-func loadRouters() ([]routers.Router, error) {
-	routers := routers.Get()
-
-	return routers, nil
 }

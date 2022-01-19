@@ -111,12 +111,12 @@ func saveXml(xmlFile string, feed *fetch.Feed) error {
 	if err := os.MkdirAll(filepath.Dir(xmlFile), 0o777); err != nil {
 		return err
 	}
-	ch, err := rss2.NewChannel(feed.Title, feed.Link, feed.Description)
+	ch, err := helper.NewChannel(feed.Title, feed.Link, feed.Description)
 	if err != nil {
 		return err
 	}
 	for _, v := range feed.Items {
-		item, err := rss2.NewItem(v.Title, v.Description)
+		item, err := helper.NewItem(v.Title, v.Description)
 		if err != nil {
 			return err
 		}
