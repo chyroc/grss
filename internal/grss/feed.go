@@ -136,6 +136,10 @@ func saveXml(xmlFile string, feed *fetch.Feed) error {
 }
 
 func saveHtml(htmlDir string, feed *fetch.Feed) error {
+	if err := os.MkdirAll(htmlDir, 0o777); err != nil {
+		return err
+	}
+
 	// 删除之前运行产生的 html
 	if len(feed.Items) > 0 {
 		fs, err := ioutil.ReadDir(htmlDir)
