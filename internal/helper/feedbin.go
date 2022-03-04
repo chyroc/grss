@@ -16,6 +16,10 @@ var Feedbin = feedbin.New(
 )
 
 func AddFeedbinPage(url string) string {
+	if url == "" {
+		log.Printf("[feedbin] create_page empty url")
+		return ""
+	}
 	if IsInCI {
 		text, _ := Req.New(http.MethodGet, url).Text()
 		return text
