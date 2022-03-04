@@ -9,6 +9,7 @@ import (
 	"github.com/chyroc/grss/internal/routers/pingwest/status"
 	"github.com/chyroc/grss/internal/routers/reddit/community/hot"
 	"github.com/chyroc/grss/internal/routers/sspai/column"
+	"github.com/chyroc/grss/internal/routers/sspai/index"
 	"github.com/chyroc/grss/internal/routers/sspai/matrix"
 	"github.com/chyroc/grss/internal/routers/trends_vc/archive"
 	"github.com/chyroc/grss/internal/routers/twitter/user/origin"
@@ -41,6 +42,7 @@ func init() {
 		map[string]string{"id": "264"},
 		map[string]string{"id": "266"},
 	)
+	Register("/sspai/index", sspai_index.New)
 	Register("/sspai/matrix", sspai_matrix.New)
 	Register("/trends_vc/archive", trends_vc_archive.New)
 	Register("/twitter/user/origin/:uid", twitter_user_origin.New,
