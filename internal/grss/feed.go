@@ -66,6 +66,15 @@ func DumpFeed(path string, feed *fetch.Feed) error {
 	return nil
 }
 
+func removeOldData() {
+	date := time.Now()
+	for i := 3; i < 10; i++ {
+		oldDate := date.AddDate(0, 0, -i).Format("2006-01-02")
+		jsonDir := fmt.Sprintf("json/%s", oldDate)
+		_ = os.Remove(jsonDir)
+	}
+}
+
 // load exist data
 func loadExistFeed(jsonFile string) (*fetch.Feed, error) {
 	oldFeed := new(fetch.Feed)

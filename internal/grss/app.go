@@ -17,6 +17,8 @@ func Run() {
 	routers := routers.Get()
 	log.Printf("load %d router", len(routers))
 
+	removeOldData() // 删除老数据
+
 	for _, router := range routers {
 		if path != "" && router.Path != path {
 			log.Printf("[grss] skip %q", router.Path)
