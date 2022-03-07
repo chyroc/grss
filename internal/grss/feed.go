@@ -67,7 +67,7 @@ func removeOldData() {
 	for i := 3; i < 10; i++ {
 		oldDate := date.AddDate(0, 0, -i).Format("2006-01-02")
 		jsonDir := fmt.Sprintf("json/%s", oldDate)
-		_ = os.Remove(jsonDir)
+		_ = os.RemoveAll(jsonDir)
 	}
 }
 
