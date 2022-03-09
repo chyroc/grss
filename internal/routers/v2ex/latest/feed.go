@@ -22,14 +22,10 @@ func New(map[string]string) (*fetch.Source, error) {
 		Parse: func(obj interface{}) (resp []*fetch.Item, err error) {
 			err = lambda.New(obj).MapArrayAsyncWithErr(func(idx int, obj interface{}) (interface{}, error) {
 				item := obj.(*v2exLatestRespItem)
-				content := helper.AddFeedbinPage(item.URL)
-				if content == "" {
-					content = item.ContentRendered
-				}
 				return &fetch.Item{
 					Title:       item.Title + " - " + item.Node.Title,
 					Link:        item.URL,
-					Description: content,
+					Description: item.ContentRendered,
 					Author:      item.Member.Username,
 					PubDate:     time.Unix(item.Created, 0),
 				}, nil
