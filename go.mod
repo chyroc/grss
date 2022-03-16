@@ -10,7 +10,7 @@ require (
 	github.com/chyroc/gorequests v0.32.0
 	github.com/codesoap/rss2 v0.0.0-20190809124225-998b8c993049
 	github.com/davecgh/go-spew v1.1.1
-	github.com/stretchr/testify v1.7.0
+	github.com/stretchr/testify v1.7.1
 )
 
 require (
