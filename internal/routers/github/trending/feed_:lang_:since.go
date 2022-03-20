@@ -13,6 +13,7 @@ import (
 
 // args: map[string]string{"lang": "go", "since": "daily"}
 // args: map[string]string{"lang": "python", "since": "daily"}
+// args: map[string]string{"lang": "rust", "since": "daily"}
 func New(args map[string]string) (*fetch.Source, error) {
 	lang := args["lang"]
 	since := args["since"]
