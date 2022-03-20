@@ -1,7 +1,6 @@
 package studygolang_index
 
 import (
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -32,7 +31,6 @@ func New(map[string]string) (*fetch.Source, error) {
 			doc.Find(".box_white > div").Each(func(i int, sel *goquery.Selection) {
 				sels = append(sels, sel)
 			})
-			fmt.Println(sels)
 
 			items := []*fetch.Item{}
 			err = lambda.New(sels).MapArrayAsync(func(idx int, v interface{}) interface{} {

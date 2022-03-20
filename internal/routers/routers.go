@@ -12,6 +12,7 @@ import (
 	"github.com/chyroc/grss/internal/routers/sspai/index"
 	"github.com/chyroc/grss/internal/routers/sspai/matrix"
 	"github.com/chyroc/grss/internal/routers/studygolang/index"
+	"github.com/chyroc/grss/internal/routers/toutiaoio/index"
 	"github.com/chyroc/grss/internal/routers/trends_vc/archive"
 	"github.com/chyroc/grss/internal/routers/twitter/user/origin"
 	"github.com/chyroc/grss/internal/routers/v2ex/latest"
@@ -47,6 +48,7 @@ func init() {
 	Register("/sspai/index", sspai_index.New)
 	Register("/sspai/matrix", sspai_matrix.New)
 	Register("/studygolang/index", studygolang_index.New)
+	Register("/toutiaoio/index", toutiaoio_index.New)
 	Register("/trends_vc/archive", trends_vc_archive.New)
 	Register("/twitter/user/origin/:uid", twitter_user_origin.New,
 		map[string]string{"uid": "woshisuchang"},
