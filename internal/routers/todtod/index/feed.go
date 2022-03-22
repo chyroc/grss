@@ -40,7 +40,7 @@ func New(map[string]string) (*fetch.Source, error) {
 				if title == "" || link == "" {
 					return nil
 				}
-				link = "https://todtod.io" + link
+				link = "https://2d2d.io" + link
 				return &fetch.Item{
 					Title:       title,
 					Link:        link,
