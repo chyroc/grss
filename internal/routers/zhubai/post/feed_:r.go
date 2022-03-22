@@ -16,7 +16,7 @@ func New(args map[string]string) (*fetch.Source, error) {
 	link := fmt.Sprintf("https://%s.zhubai.love/", r)
 
 	postResp := new(postItemResp)
-	err := helper.Req.New(http.MethodGet, fmt.Sprintf("https://%s.zhubai.love/api/publications/%s/posts?publication_id_type=token", r, r)).Unmarshal(resp)
+	err := helper.Req.New(http.MethodGet, fmt.Sprintf("https://%s.zhubai.love/api/publications/%s/posts?publication_id_type=token", r, r)).Unmarshal(postResp)
 	if err != nil {
 		return nil, err
 	}
