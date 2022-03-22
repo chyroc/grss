@@ -8,6 +8,7 @@ import (
 	"github.com/chyroc/go-lambda"
 	"github.com/chyroc/grss/internal/fetch"
 	"github.com/chyroc/grss/internal/helper"
+	"github.com/gomarkdown/markdown"
 )
 
 func New(map[string]string) (*fetch.Source, error) {
@@ -41,10 +42,17 @@ func New(map[string]string) (*fetch.Source, error) {
 					return nil
 				}
 				link = "https://studygolang.com" + link
+				contentText, _ := helper.Req.New(http.MethodGet, link).Text()
+				contentDoc, _ := goquery.NewDocumentFromReader(strings.NewReader(contentText))
+				md := contentDoc.Find(".markdown-body").Text()
+				output := markdown.ToHTML([]byte(md), nil, nil)
+				if len(output) == 0 {
+					output = []byte(helper.AddFeedbinPage(link))
+				}
 				return &fetch.Item{
 					Title:       title,
 					Link:        link,
-					Description: helper.AddFeedbinPage(link),
+					Description: string(output),
 				}
 			}).FilterList(func(idx int, obj interface{}) bool {
 				return obj != nil && obj.(*fetch.Item) != nil
