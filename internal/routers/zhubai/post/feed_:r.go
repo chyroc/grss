@@ -1,4 +1,4 @@
-package post
+package zhubai_post
 
 import (
 	"fmt"
