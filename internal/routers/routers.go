@@ -4,8 +4,10 @@ import (
 	"github.com/chyroc/grss/internal/fetch"
 	"github.com/chyroc/grss/internal/routers/banyuetan/jinritan"
 	"github.com/chyroc/grss/internal/routers/dev_to/feed"
+	"github.com/chyroc/grss/internal/routers/draveness/index"
 	"github.com/chyroc/grss/internal/routers/github/trending"
 	"github.com/chyroc/grss/internal/routers/lobste/home"
+	"github.com/chyroc/grss/internal/routers/meituan_tech/article"
 	"github.com/chyroc/grss/internal/routers/pingwest/status"
 	"github.com/chyroc/grss/internal/routers/reddit/community/hot"
 	"github.com/chyroc/grss/internal/routers/sspai/column"
@@ -28,12 +30,14 @@ import (
 func init() {
 	Register("/banyuetan/jinritan", banyuetan_jinritan.New)
 	Register("/dev_to/feed", dev_to_feed.New)
+	Register("/draveness/index", draveness_index.New)
 	Register("/github/trending/:lang/:since", github_trending.New,
 		map[string]string{"lang": "go", "since": "daily"},
 		map[string]string{"lang": "python", "since": "daily"},
 		map[string]string{"lang": "rust", "since": "daily"},
 	)
 	Register("/lobste/home", lobste_home.New)
+	Register("/meituan_tech/article", meituan_tech_article.New)
 	Register("/pingwest/status", pingwest_status.New)
 	Register("/reddit/community/hot/:r", reddit_community_hot.New,
 		map[string]string{"r": "golang"},
