@@ -25,6 +25,7 @@ import (
 	"github.com/chyroc/grss/internal/routers/ycombinator/best"
 	"github.com/chyroc/grss/internal/routers/ycombinator/newest"
 	"github.com/chyroc/grss/internal/routers/zhihu/bookstore/newest"
+	"github.com/chyroc/grss/internal/routers/zhubai/post"
 )
 
 func init() {
@@ -68,6 +69,10 @@ func init() {
 	Register("/ycombinator/best", ycombinator_best.New)
 	Register("/ycombinator/newest", ycombinator_newest.New)
 	Register("/zhihu/bookstore/newest", zhihu_bookstore_newest.New)
+	Register("/zhubai/post/:r", zhubai_post.New,
+		map[string]string{"r": "chasays"},
+		map[string]string{"r": "pythonhunter"},
+	)
 }
 
 var routers []Router
