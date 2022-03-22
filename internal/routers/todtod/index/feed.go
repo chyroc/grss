@@ -11,7 +11,7 @@ import (
 )
 
 func New(map[string]string) (*fetch.Source, error) {
-	link := "https://todtod.io/"
+	link := "https://2d2d.io/"
 	return &fetch.Source{
 		Title:       "TO-D 杂志 - 首页",
 		Description: "TO-D 杂志 - 首页",
