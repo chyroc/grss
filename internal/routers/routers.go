@@ -6,6 +6,7 @@ import (
 	"github.com/chyroc/grss/internal/routers/dev_to/feed"
 	"github.com/chyroc/grss/internal/routers/draveness/index"
 	"github.com/chyroc/grss/internal/routers/github/trending"
+	"github.com/chyroc/grss/internal/routers/gocn/daily"
 	"github.com/chyroc/grss/internal/routers/lobste/home"
 	"github.com/chyroc/grss/internal/routers/meituan_tech/article"
 	"github.com/chyroc/grss/internal/routers/pingwest/status"
@@ -38,6 +39,7 @@ func init() {
 		map[string]string{"lang": "python", "since": "daily"},
 		map[string]string{"lang": "rust", "since": "daily"},
 	)
+	Register("/gocn/daily", gocn_daily.New)
 	Register("/lobste/home", lobste_home.New)
 	Register("/meituan_tech/article", meituan_tech_article.New)
 	Register("/pingwest/status", pingwest_status.New)
