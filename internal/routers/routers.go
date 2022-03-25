@@ -76,6 +76,7 @@ func init() {
 	Register("/zhubai/post/:r", zhubai_post.New,
 		map[string]string{"r": "chasays"},
 		map[string]string{"r": "pythonhunter"},
+		map[string]string{"r": "produck"},
 	)
 }
 
