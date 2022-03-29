@@ -32,9 +32,9 @@ func New(map[string]string) (*fetch.Source, error) {
 				link := fmt.Sprintf("https://dev.to" + item.Path)
 
 				return &fetch.Item{
-					Title:       item.Title,
+					Title:       helper.FanyiAndAppend(item.Title, " | "),
 					Link:        link,
-					Description: helper.AddFeedbinPage(link),
+					Description: helper.AddFeedbinAndFanyi(link),
 					Author:      item.User.Username,
 					PubDate:     time.Unix(item.PublishedAtInt, 10),
 				}

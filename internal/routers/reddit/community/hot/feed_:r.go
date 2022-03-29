@@ -3,7 +3,6 @@ package reddit_community_hot
 import (
 	"fmt"
 	"net/http"
-	"os"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -56,13 +55,6 @@ func New(args map[string]string) (*fetch.Source, error) {
 				}
 				text := helper.AddFeedbinPage(link)
 
-				translateResult, _ := baidufanyi.New(baidufanyi.WithCredential(os.Getenv("BAIDUFANYI_APP_ID"), os.Getenv("jnh5wcr_d4NrMkhkSdMW"))).Translate(text, baidufanyi.LanguageEn, baidufanyi.LanguageZh)
-				translateResultString, _ := lambda.New(translateResult).MapList(func(idx int, obj interface{}) interface{} {
-					return obj.(*baidufanyi.TranslateResult).Dst
-				}).ToStringSlice()
-				if len(translateResultString) > 0 {
-					text = strings.Join(translateResultString, "\n") + "\n\n\n" + text
-				}
 				title := strings.TrimSpace(a.Find("h3").Text())
 				return &fetch.Item{
 					Title:       title,
