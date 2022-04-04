@@ -28,9 +28,3 @@ func FanyiAndAppend(text, sep string) string {
 
 	return strings.Join([]string{fanyi, text}, sep)
 }
-
-func AddFeedbinAndFanyi(url string) string {
-	text := AddFeedbinPage(url)
-
-	return FanyiAndAppend(text, "<br/><br/><br/>")
-}
