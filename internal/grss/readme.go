@@ -18,7 +18,8 @@ func updateReadme() error {
 		for _, args := range v.Args {
 			source, err := v.Source(args)
 			if err != nil {
-				panic(err)
+				fmt.Printf("get source: %s fail\n", v.Path)
+				continue
 			}
 			path := helper.ToJoinArgsURL(v.Path, args)
 			items = append(items, fmt.Sprintf("| %s | %s | %s | %s |",

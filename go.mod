@@ -10,13 +10,13 @@ require (
 	github.com/chyroc/gorequests v0.32.0
 	github.com/codesoap/rss2 v0.0.0-20190809124225-998b8c993049
 	github.com/davecgh/go-spew v1.1.1
+	github.com/gomarkdown/markdown v0.0.0-20220310201231-552c6011c0b8
 	github.com/stretchr/testify v1.7.1
 )
 
 require (
 	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/chyroc/persistent-cookiejar v0.1.0 // indirect
-	github.com/gomarkdown/markdown v0.0.0-20220310201231-552c6011c0b8 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rogpeppe/go-internal v1.8.0 // indirect
 	golang.org/x/net v0.0.0-20210916014120-12bc252f5db8 // indirect
