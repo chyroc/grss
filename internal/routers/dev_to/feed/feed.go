@@ -34,7 +34,7 @@ func New(map[string]string) (*fetch.Source, error) {
 				return &fetch.Item{
 					Title:       helper.FanyiAndAppend(item.Title, " | "),
 					Link:        link,
-					Description: helper.AddFeedbinPage(link),
+					Description: helper.FetchFeedBinAndFanyiAndAppend(link),
 					Author:      item.User.Username,
 					PubDate:     time.Unix(item.PublishedAtInt, 10),
 				}
