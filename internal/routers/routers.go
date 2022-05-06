@@ -77,6 +77,7 @@ func init() {
 		map[string]string{"r": "chasays"},
 		map[string]string{"r": "pythonhunter"},
 		map[string]string{"r": "produck"},
+		map[string]string{"r": "oistore"},
 	)
 }
 
