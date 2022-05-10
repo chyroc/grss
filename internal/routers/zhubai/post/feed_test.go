@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/chyroc/grss/internal/fetch"
+	"github.com/chyroc/grss/internal/grss"
 	zhubai_post "github.com/chyroc/grss/internal/routers/zhubai/post"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/stretchr/testify/assert"
@@ -22,5 +23,5 @@ func Test_Feed(t *testing.T) {
 	spew.Dump(feed)
 	as.True(len(feed.Items) > 0)
 	as.NotEqual(feed.Items[0].Link, feed.Items[1].Link)
-	as.NotEmpty(feed.Items[0].Description)
+	as.Nil(grss.SaveXml("/tmp/rss.xml", feed))
 }

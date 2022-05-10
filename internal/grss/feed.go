@@ -54,7 +54,7 @@ func DumpFeed(path string, feed *fetch.Feed) error {
 		if err := saveJson(jsonFile, feed); err != nil {
 			return err
 		}
-		if err := saveXml(xmlFile, feed); err != nil {
+		if err := SaveXml(xmlFile, feed); err != nil {
 			return err
 		}
 	}
@@ -112,7 +112,7 @@ func saveJson(jsonFile string, feed *fetch.Feed) error {
 	return ioutil.WriteFile(jsonFile, bs, 0o666)
 }
 
-func saveXml(xmlFile string, feed *fetch.Feed) error {
+func SaveXml(xmlFile string, feed *fetch.Feed) error {
 	if err := os.MkdirAll(filepath.Dir(xmlFile), 0o777); err != nil {
 		return err
 	}
