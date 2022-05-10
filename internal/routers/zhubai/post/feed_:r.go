@@ -16,6 +16,7 @@ import (
 // args: map[string]string{"r": "pythonhunter"}
 // args: map[string]string{"r": "produck"}
 // args: map[string]string{"r": "oistore"}
+// args: map[string]string{"r": "decohack"}
 func New(args map[string]string) (*fetch.Source, error) {
 	r := args["r"]
 	link := fmt.Sprintf("https://%s.zhubai.love/", r)
