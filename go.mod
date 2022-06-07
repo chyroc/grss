@@ -13,7 +13,7 @@ require (
 	github.com/codesoap/rss2 v0.0.0-20190809124225-998b8c993049
 	github.com/davecgh/go-spew v1.1.1
 	github.com/gomarkdown/markdown v0.0.0-20220310201231-552c6011c0b8
-	github.com/stretchr/testify v1.7.1
+	github.com/stretchr/testify v1.7.2
 )
 
 require (
@@ -32,5 +32,5 @@ require (
 	golang.org/x/net v0.0.0-20210916014120-12bc252f5db8 // indirect
 	golang.org/x/sys v0.0.0-20220422013727-9388b58f7150 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
