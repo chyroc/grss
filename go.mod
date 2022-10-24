@@ -13,7 +13,7 @@ require (
 	github.com/codesoap/rss2 v0.0.0-20190809124225-998b8c993049
 	github.com/davecgh/go-spew v1.1.1
 	github.com/gomarkdown/markdown v0.0.0-20220310201231-552c6011c0b8
-	github.com/stretchr/testify v1.8.0
+	github.com/stretchr/testify v1.8.1
 )
 
 require (
