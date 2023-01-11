@@ -6,7 +6,7 @@ require (
 	github.com/PuerkitoBio/goquery v1.8.0
 	github.com/chyroc/baidufanyi v0.2.0
 	github.com/chyroc/extract v0.0.0-20220510060937-9168609a71d2
-	github.com/chyroc/go-feedbin v0.3.0
+	github.com/chyroc/go-feedbin v0.4.0
 	github.com/chyroc/go-lambda v0.8.0
 	github.com/chyroc/googletranslate v0.3.0
 	github.com/chyroc/gorequests v0.33.0

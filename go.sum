@@ -12,8 +12,8 @@ github.com/chyroc/baidufanyi v0.2.0 h1:K+G/LWlOfgIcx6av4Ct7nR8ntPqMw6Bl8XVYb6tIK
 github.com/chyroc/baidufanyi v0.2.0/go.mod h1:/23Yxj+pNAdy1mAS8WWMojunoz1pbnAKACZZgmmWKCk=
 github.com/chyroc/extract v0.0.0-20220510060937-9168609a71d2 h1:GtR6Y6IiVk/Mze1qttRTM7lNcbSBMNgHUYYNPKoKuF8=
 github.com/chyroc/extract v0.0.0-20220510060937-9168609a71d2/go.mod h1:X4I7P++dYmVBJPou3xeDLX570RrVxcWMJ2ibpqm7YjI=
-github.com/chyroc/go-feedbin v0.3.0 h1:4djHA7SG9uWgKUiSf0GOkJASvQPoC6VvuBnZEbGFuac=
-github.com/chyroc/go-feedbin v0.3.0/go.mod h1:ml2k3H/Xem2rNZ4H1xeGd1YUJNlnrmFVN1isvuvOLNI=
+github.com/chyroc/go-feedbin v0.4.0 h1:BW14CoKEwIlTmKmaswB3Y0y9F69q+TUj34zN0TY5nU8=
+github.com/chyroc/go-feedbin v0.4.0/go.mod h1:PMGVbjPHBW/yVhNzdUMce5dTvdqNv3fjAe8SePQZyw4=
 github.com/chyroc/go-lambda v0.8.0 h1:kFx6xIQkIqiMzRh1gjXO71LKAi9L7XsMIB8JfYZ9YBE=
 github.com/chyroc/go-lambda v0.8.0/go.mod h1:7cd+KOtAZacPGcupkv9CzYdenUDwbz4mxpQ45/NhLeQ=
 github.com/chyroc/go-ptr v1.4.0 h1:o+GxDzrmIdWaJmWU5CRWVX+31UIcQUNE4SauRWuN6O8=
