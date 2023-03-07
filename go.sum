@@ -24,8 +24,8 @@ github.com/chyroc/gorequests v0.33.0 h1:04ydHCOaLYt/JWusaZoKR4x/jtGRJqKN1z+ZjW6v
 github.com/chyroc/gorequests v0.33.0/go.mod h1:CZDj+0SZvzDtZsFKnX971eHls2bwUtGXTcmQ6by9ONA=
 github.com/chyroc/persistent-cookiejar v0.1.0 h1:F7rGmT5sShfskgbZmN9MOUJS8CwcSsm8KbErcAPUO5s=
 github.com/chyroc/persistent-cookiejar v0.1.0/go.mod h1:eb/Xy6R1GfUrLpPD8AdIxnZ0dbihI6yDITF3btgmnJU=
-github.com/codesoap/rss2 v0.0.0-20190809124225-998b8c993049 h1:R/jfPKqaW2OW6ZWpEmNuJrBIRP0jIR9kCorec/eJAss=
-github.com/codesoap/rss2 v0.0.0-20190809124225-998b8c993049/go.mod h1:GaNPBTe1sGx46T3L/m2aeQj7Osakiqlubrn2VKf8U2Y=
+github.com/codesoap/rss2 v0.1.0 h1:dl8bitqxsWlOo9ytxXldav8WoCm84TvJqxaqwQVMpkc=
+github.com/codesoap/rss2 v0.1.0/go.mod h1:lRA6jsAltY7BBFVVsBw4XYu6l2/74FkqSCPSbTEhyAg=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
