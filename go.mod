@@ -8,7 +8,7 @@ require (
 	github.com/chyroc/extract v0.0.0-20220510060937-9168609a71d2
 	github.com/chyroc/go-feedbin v0.4.0
 	github.com/chyroc/go-lambda v0.8.0
-	github.com/chyroc/googletranslate v0.3.0
+	github.com/chyroc/googletranslate v0.4.0
 	github.com/chyroc/gorequests v0.33.0
 	github.com/codesoap/rss2 v0.0.0-20190809124225-998b8c993049
 	github.com/davecgh/go-spew v1.1.1
